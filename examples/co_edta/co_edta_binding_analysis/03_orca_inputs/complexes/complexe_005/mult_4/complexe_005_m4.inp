@@ -1,7 +1,7 @@
 # complexe_005 Multiplicity=4
-# Generated on 2025-06-03 11:38:23
+# Generated on 2025-06-03 11:51:20
 
-! UHF B3LYP def2-SVP RIJCOSX def2/J D3BJ CPCM(water) Opt
+! UHF B3LYP def2-SVP RIJCOSX def2/J D3BJ Opt Freq
 
 %maxcore 2000
 

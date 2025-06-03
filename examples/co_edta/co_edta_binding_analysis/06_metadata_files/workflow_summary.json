@@ -1,7 +1,7 @@
 {
   "experiment_info": {
     "name": "co_edta_binding_analysis",
-    "timestamp": "2025-06-03T11:38:23.230189",
+    "timestamp": "2025-06-03T11:51:20.906790",
     "system": {
       "metal": "Co+2",
       "ligand": "edta+0",
@@ -24,12 +24,12 @@
     "ligands": {
       "total_generated": 5,
       "successfully_optimized": 5,
-      "lowest_energy": -67.990440695264
+      "lowest_energy": -67.990442101841
     },
     "complexes": {
       "total_generated": 50,
       "successfully_optimized": 46,
-      "lowest_energy": -77.804620698697
+      "lowest_energy": -77.804624137784
     }
   },
   "file_locations": {

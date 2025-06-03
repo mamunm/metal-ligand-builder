@@ -266,23 +266,44 @@ class ConformerGenerator:
         cmd = [self.obabel_path, str(initial_xyz), "-O", str(sdf_file)]
         subprocess.run(cmd, capture_output=True, check=True)
         
-        # Generate conformers
+        # Generate conformers using confab
         conf_sdf = work_dir / "conformers.sdf"
-        cmd = [
-            self.obabel_path,
-            str(sdf_file),
-            "-O", str(conf_sdf),
-            "--conformer",
-            "--nconf", str(n_conformers),
-            "--score", "energy",
-            "--writeconformers"
-        ]
+        
+        # Try confab first (if available)
+        confab_path = shutil.which("confab")
+        if confab_path:
+            cmd = [
+                confab_path,
+                str(sdf_file),
+                str(conf_sdf)
+            ]
+        else:
+            # Fallback to obabel with conformer generation
+            cmd = [
+                self.obabel_path,
+                str(sdf_file),
+                "-O", str(conf_sdf),
+                "--conformer",
+                "--nconf", str(n_conformers),
+                "--score", "energy",
+                "--writeconformers"
+            ]
         
         try:
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
             logger.info(f"Generated conformers: {result.stdout}")
         except subprocess.CalledProcessError as e:
             logger.error(f"Conformer generation failed: {e.stderr}")
+            return []
+        
+        # Check if SDF file exists and has content
+        if not conf_sdf.exists():
+            logger.error(f"Conformer SDF file not found: {conf_sdf}")
+            return []
+        
+        # Check if SDF file has content
+        if conf_sdf.stat().st_size == 0:
+            logger.error(f"Conformer SDF file is empty: {conf_sdf}")
             return []
         
         # Convert conformers to individual XYZ files
@@ -294,11 +315,19 @@ class ConformerGenerator:
             "-m",
             "-O", str(xyz_prefix)
         ]
-        subprocess.run(cmd, capture_output=True, check=True)
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            logger.debug(f"XYZ conversion result: {result.stdout}")
+        except subprocess.CalledProcessError as e:
+            logger.error(f"XYZ conversion failed: {e.stderr}")
+            return []
         
         # Read generated conformers
+        xyz_files = list(work_dir.glob("conf*.xyz"))
+        logger.debug(f"Found {len(xyz_files)} XYZ files: {[f.name for f in xyz_files]}")
+        
         conformers = []
-        for i, xyz_file in enumerate(sorted(work_dir.glob("conf*.xyz"))):
+        for i, xyz_file in enumerate(sorted(xyz_files)):
             geom = self._read_xyz(xyz_file)
             geom.title = f"conformer_{i:03d}"
             conformers.append(geom)

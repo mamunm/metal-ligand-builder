@@ -79,6 +79,7 @@ class TestXTBOptimizer:
         assert result.properties["homo_lumo_gap"] > 0
     
     @pytest.mark.skipif(not shutil.which("xtb"), reason="xTB not available")
+    @pytest.mark.requires_xtb
     def test_optimize_charged_system(self, xtb_optimizer, tmp_path):
         """Test optimization of charged system."""
         # Create Na+ ion
@@ -97,6 +98,7 @@ class TestXTBOptimizer:
         assert result.energy is not None
     
     @pytest.mark.skipif(not shutil.which("xtb"), reason="xTB not available")
+    @pytest.mark.requires_xtb
     def test_optimization_failure(self, xtb_optimizer, tmp_path):
         """Test handling of optimization failure."""
         # Create geometry with atoms too close (will fail)
@@ -252,6 +254,8 @@ class TestXTBWorkflowManager:
             assert summary_data["n_structures"] == 1
     
     @pytest.mark.skipif(not shutil.which("xtb"), reason="xTB not available")
+    @pytest.mark.requires_xtb
+    @pytest.mark.slow
     def test_optimize_without_folders(self, setup_test_structures):
         """Test optimization without creating folders."""
         workflow_manager = XTBWorkflowManager(
@@ -360,6 +364,7 @@ class TestResultParsing:
         assert properties["homo_lumo_gap"] == pytest.approx(13.947)
         assert properties["dipole_moment"] == pytest.approx(1.827)
     
+    @pytest.mark.requires_xtb
     def test_parse_text_output_fallback(self, sample_xtb_output):
         """Test parsing of text output when JSON is not available."""
         # Remove JSON file to test fallback

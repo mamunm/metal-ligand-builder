@@ -353,7 +353,7 @@ class XTBOptimizer:
             # Parse total energy
             lines = content.split('\n')
             for i, line in enumerate(lines):
-                if "TOTAL ENERGY" in line:
+                if "total energy" in line.lower():
                     parts = line.split()
                     for j, part in enumerate(parts):
                         if part == "Eh" and j > 0:
@@ -374,9 +374,9 @@ class XTBOptimizer:
                         pass
                 
                 # Parse dipole moment
-                if "molecular dipole:" in line and i + 3 < len(lines):
+                if "molecular dipole:" in line and i + 2 < len(lines):
                     try:
-                        dipole_line = lines[i + 3]
+                        dipole_line = lines[i + 2]
                         properties["dipole_moment"] = float(dipole_line.split()[-1])
                     except (IndexError, ValueError):
                         pass

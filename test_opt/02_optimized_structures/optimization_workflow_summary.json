@@ -1,0 +1,33 @@
+{
+  "workflow": "XTB Optimization/Single-Point",
+  "timestamp": "2025-06-03T12:25:55.824128",
+  "config": {
+    "method": "gfn2",
+    "solvent": null,
+    "convergence": "loose",
+    "n_workers": 1,
+    "create_folders": false
+  },
+  "notes": {
+    "metals": "Single-point calculations (no optimization for single atoms)",
+    "ligands": "Full geometry optimization",
+    "complexes": "Full geometry optimization"
+  },
+  "results": {
+    "metals": {
+      "total": 1,
+      "successful": 1,
+      "failed": 0
+    },
+    "ligands": {
+      "total": 0,
+      "successful": 0,
+      "failed": 0
+    },
+    "complexes": {
+      "total": 0,
+      "successful": 0,
+      "failed": 0
+    }
+  }
+}

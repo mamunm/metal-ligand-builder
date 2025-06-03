@@ -1,0 +1,24 @@
+{
+  "metal_symbol": "Na",
+  "metal_charge": 1,
+  "coordination_numbers": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "preferred_geometries": [
+    "linear",
+    "trigonal_planar",
+    "tetrahedral",
+    "trigonal_bipyramidal",
+    "square_pyramidal",
+    "octahedral"
+  ],
+  "n_geometries": 1,
+  "geometry_files": [
+    "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/integration_test/01_initial_structures/metals/Na_ion.xyz"
+  ],
+  "includes_hydrated": false
+}

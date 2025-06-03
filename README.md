@@ -3,17 +3,19 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A modular Python package for metal-ligand binding energy analysis using xTB and preparation for ORCA DFT calculations.
+A comprehensive Python package for automated metal-ligand binding analysis using semi-empirical quantum mechanics (xTB) with seamless preparation for high-level DFT calculations in ORCA.
 
 ## Overview
 
-ML-xTB-Prescreening provides a streamlined workflow for:
-1. Generating metal-ligand complex structures
-2. Optimizing geometries with xTB
-3. Calculating binding energies
-4. Preparing ORCA input files for high-level DFT calculations
+ML-xTB-Prescreening provides a comprehensive computational pipeline for metal-ligand complex analysis:
 
-The package focuses on single metal-ligand pair analysis with a clean, modular architecture.
+1. **Structure Generation**: Intelligent pose generation with conformational sampling
+2. **Force Field Optimization**: Pre-optimization using RDKit or OpenBabel
+3. **Semi-Empirical QM**: Fast geometry optimization and energy calculations with xTB
+4. **Binding Energy Analysis**: Automated calculation and ranking of binding energies
+5. **DFT Preparation**: Generation of production-ready ORCA input files with flexible settings
+
+Designed for both rapid screening and detailed analysis of metal-ligand interactions with support for various coordination environments and computational settings.
 
 ## Features
 
@@ -23,9 +25,13 @@ The package focuses on single metal-ligand pair analysis with a clean, modular a
   - Generates multiple conformations for each pose
   - Maintains metal coordination during optimization
 - **Conformer Generation**: Explores ligand conformational space
-- **XTB Optimization**: Fast semi-empirical quantum mechanical optimization
-- **Binding Energy Calculation**: Computes metal-ligand binding energies
-- **ORCA Input Preparation**: Generates ready-to-run DFT input files
+- **XTB Optimization**: Fast semi-empirical quantum mechanical optimization with solvent support
+- **Binding Energy Calculation**: Computes metal-ligand binding energies with statistical analysis
+- **ORCA Input Preparation**: Generates ready-to-run DFT input files with advanced features:
+  - Vacuum and solvated calculations
+  - Frequency calculations for thermodynamic analysis
+  - Multiple spin multiplicities
+  - Automatic UHF/RHF selection
 
 ## Installation
 
@@ -90,14 +96,24 @@ results = complex.run_workflow()
 
 ## Workflow Steps
 
-1. **Generate Ligand Conformers**: Creates multiple 3D conformations of the ligand
-2. **Generate Metal Geometries**: Prepares metal ion structures
-3. **Detect Binding Sites**: Identifies potential coordination sites on the ligand
-4. **Generate Complex Poses**: Creates metal-ligand arrangements based on coordination chemistry
-5. **XTB Optimization**: Optimizes all structures using semi-empirical QM
-6. **Calculate Binding Energies**: Computes E_binding = E_complex - E_metal - E_ligand
-7. **Rank Structures**: Orders complexes by binding energy
-8. **Prepare ORCA Inputs**: Creates DFT input files for further refinement
+1. **Ligand Conformer Generation**: Creates multiple 3D conformations exploring conformational space
+2. **Metal Ion Preparation**: Prepares metal ion structures with appropriate charge and multiplicity
+3. **Binding Site Detection**: Automatically identifies coordination sites (carboxylates, amines, etc.)
+4. **Complex Pose Generation**: Creates metal-ligand arrangements with:
+   - Force field pre-optimization (RDKit/OpenBabel)
+   - Coordination geometry validation
+   - RMSD-based duplicate removal
+5. **Semi-Empirical Optimization**: Fast xTB optimization with:
+   - Solvent effects (ALPB model)
+   - Multiple conformers per pose
+   - Energy and gradient convergence
+6. **Binding Energy Analysis**: Computes E_binding = E_complex - E_metal - E_ligand
+7. **Structure Ranking**: Orders by binding energy with statistical analysis
+8. **ORCA Input Generation**: Creates production-ready DFT inputs with:
+   - Automatic multiplicity determination
+   - Vacuum/solvent configuration
+   - Optional frequency calculations
+   - Optimized computational settings
 
 ## Configuration
 
@@ -113,17 +129,53 @@ config = ComplexConfig(
     energy_window=10.0,          # Energy window in kcal/mol
     xtb_config=XTBConfig(
         method="gfn2",
-        solvent="water"
+        solvent="water"  # or None for gas phase
     ),
     orca_config=ORCAConfig(
         method="B3LYP",
         basis_set="def2-SVP",
-        dispersion="D3BJ"
+        dispersion="D3BJ",
+        solvent="vacuum",              # Use "vacuum" for gas phase calculations
+        calculate_frequencies=True     # Enable frequency calculations
     )
 )
 
 # Use custom configuration
 complex = MetalLigandComplex(..., config=config)
+```
+
+### Advanced ORCA Configuration Examples
+
+```python
+# Gas phase calculations with frequencies
+gas_phase_config = ORCAConfig(
+    method="B3LYP",
+    basis_set="def2-TZVP",
+    dispersion="D3BJ", 
+    solvent="vacuum",
+    calculate_frequencies=True,
+    n_cores=8,
+    max_core=4000
+)
+
+# Solvated calculations
+water_config = ORCAConfig(
+    method="wB97X-D3",
+    basis_set="def2-SVP",
+    auxiliary_basis="def2/J",
+    solvent_model="CPCM",
+    solvent="water",
+    calculate_frequencies=False
+)
+
+# High-level calculations
+high_level_config = ORCAConfig(
+    method="DLPNO-CCSD(T)",
+    basis_set="def2-TZVPP",
+    auxiliary_basis="def2-TZVPP/C",
+    solvent="vacuum",
+    additional_keywords=["TightSCF", "GridX6"]
+)
 ```
 
 ## Architecture
@@ -139,15 +191,25 @@ The package follows a modular design:
 ## Output Structure
 
 ```
-metal_ligand_prescreening/
-├── experiment_name/
-│   ├── ligand_conformers/      # Generated conformers
-│   ├── metal_structures/       # Metal ion structures
-│   ├── complex_poses/          # Initial metal-ligand poses
-│   ├── optimized_structures/   # XTB-optimized geometries
-│   ├── binding_energies.csv    # Calculated binding energies
-│   ├── rankings.csv            # Structures ranked by energy
-│   └── orca_inputs/           # ORCA input files
+experiment_name_analysis/
+├── 01_initial_structures/
+│   ├── complexes/              # Initial metal-ligand poses
+│   ├── ligands/               # Ligand conformers
+│   └── metals/                # Metal ion structures
+├── 02_optimized_structures/    # xTB-optimized geometries
+│   ├── complexes/             # Optimized complexes with energies
+│   ├── ligands/               # Optimized ligand conformers
+│   └── metals/                # Optimized metal structures
+├── 03_orca_inputs/            # ORCA DFT input files
+│   ├── complexes/             # Multiple multiplicities per complex
+│   ├── ligands/               # Ligand inputs
+│   └── metals/                # Metal ion inputs
+├── 04_reports/                # Analysis results
+│   ├── analysis_report.html   # Comprehensive HTML report
+│   ├── complexes_results.csv  # Detailed binding energies
+│   └── *_summary.csv          # Summary statistics
+├── 05_best_structures/        # Top-ranked structures
+└── 06_metadata_files/         # Workflow metadata and logs
 ```
 
 ## Example: Co(II)-EDTA Complex Analysis

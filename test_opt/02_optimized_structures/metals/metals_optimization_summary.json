@@ -1,0 +1,22 @@
+{
+  "structure_type": "metals",
+  "timestamp": "2025-06-03T12:25:55.821661",
+  "n_structures": 1,
+  "n_successful": 1,
+  "n_failed": 0,
+  "structures": [
+    {
+      "name": "Li1+_bare",
+      "success": true,
+      "initial_energy": null,
+      "final_energy": 0.1659637,
+      "energy_change": null,
+      "convergence": {},
+      "properties": {
+        "total_energy": 0.1659637,
+        "dipole_moment": 0.0
+      },
+      "error": null
+    }
+  ]
+}

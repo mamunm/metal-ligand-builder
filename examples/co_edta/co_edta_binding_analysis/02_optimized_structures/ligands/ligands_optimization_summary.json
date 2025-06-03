@@ -1,6 +1,6 @@
 {
   "structure_type": "ligands",
-  "timestamp": "2025-06-03T11:37:47.916303",
+  "timestamp": "2025-06-03T11:50:46.381579",
   "n_structures": 5,
   "n_successful": 5,
   "n_failed": 0,
@@ -9,13 +9,13 @@
       "name": "edta_conformer_3",
       "success": true,
       "initial_energy": null,
-      "final_energy": -67.990440695264,
+      "final_energy": -67.990442101841,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.515,
-        "total_energy": -67.990440695264,
-        "homo_lumo_gap": 2.4809
+        "dipole_moment": 4.519,
+        "total_energy": -67.990442101841,
+        "homo_lumo_gap": 2.4782
       },
       "error": null
     },
@@ -23,13 +23,13 @@
       "name": "edta_conformer_4",
       "success": true,
       "initial_energy": null,
-      "final_energy": -67.988696656188,
+      "final_energy": -67.988695896699,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 2.831,
-        "total_energy": -67.988696656188,
-        "homo_lumo_gap": 2.9995000000000003
+        "total_energy": -67.988695896699,
+        "homo_lumo_gap": 2.999999999999999
       },
       "error": null
     },
@@ -51,12 +51,12 @@
       "name": "edta_conformer_0",
       "success": true,
       "initial_energy": null,
-      "final_energy": -67.984648424125,
+      "final_energy": -67.984648423759,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 3.942,
-        "total_energy": -67.984648424125,
+        "total_energy": -67.984648423759,
         "homo_lumo_gap": 2.9804000000000004
       },
       "error": null
@@ -65,12 +65,12 @@
       "name": "edta_conformer_2",
       "success": true,
       "initial_energy": null,
-      "final_energy": -67.982552610794,
+      "final_energy": -67.982552648475,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 1.933,
-        "total_energy": -67.982552610794,
+        "total_energy": -67.982552648475,
         "homo_lumo_gap": 2.8138999999999994
       },
       "error": null

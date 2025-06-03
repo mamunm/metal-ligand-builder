@@ -71,6 +71,9 @@ def analyze_co_edta_complex():
             method="B3LYP",         # B3LYP functional
             basis_set="def2-SVP",   # Double-zeta basis set
             dispersion="D3BJ",      # Grimme's D3 dispersion with BJ damping
+            solvent="vacuum",      # Gas phase calculations
+            calculate_frequencies=True,  # Calculate vibrational frequencies
+            multiplicity="auto",  # Auto-determine multiplicity
         ),
         
         # Computational resources

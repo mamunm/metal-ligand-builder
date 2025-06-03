@@ -1,7 +1,7 @@
 # ligand_003 Multiplicity=1
-# Generated on 2025-06-03 11:38:23
+# Generated on 2025-06-03 11:51:20
 
-! B3LYP def2-SVP RIJCOSX def2/J D3BJ CPCM(water) Opt
+! B3LYP def2-SVP RIJCOSX def2/J D3BJ Opt Freq
 
 %maxcore 2000
 

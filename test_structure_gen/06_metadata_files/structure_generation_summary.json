@@ -1,0 +1,30 @@
+{
+  "experiment_name": "test_structure_gen",
+  "timestamp": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening",
+  "ligand": {
+    "name": "glycine",
+    "smiles": "NCC(=O)O",
+    "charge": 0,
+    "n_conformers": 0
+  },
+  "metal": {
+    "symbol": "Zn",
+    "charge": 2,
+    "n_geometries": 1
+  },
+  "binding_sites": {
+    "n_sites": 0,
+    "types": []
+  },
+  "complexes": {
+    "n_poses": 0,
+    "total_charge": 2
+  },
+  "directories": {
+    "experiment": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/test_structure_gen",
+    "initial_structures": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/test_structure_gen/01_initial_structures",
+    "metals": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/test_structure_gen/01_initial_structures/metals",
+    "ligands": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/test_structure_gen/01_initial_structures/ligands",
+    "complexes": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/test_structure_gen/01_initial_structures/complexes"
+  }
+}

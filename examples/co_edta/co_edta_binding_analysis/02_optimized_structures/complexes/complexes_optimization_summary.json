@@ -1,6 +1,6 @@
 {
   "structure_type": "complexes",
-  "timestamp": "2025-06-03T11:38:23.167878",
+  "timestamp": "2025-06-03T11:51:20.847607",
   "n_structures": 50,
   "n_successful": 46,
   "n_failed": 4,
@@ -9,13 +9,13 @@
       "name": "edta_Co_conf4_pose40",
       "success": true,
       "initial_energy": null,
-      "final_energy": -77.804620698697,
+      "final_energy": -77.804624137784,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.028,
-        "total_energy": -77.804620698697,
-        "homo_lumo_gap": 1.1045999999999996
+        "dipole_moment": 3.052,
+        "total_energy": -77.804624137784,
+        "homo_lumo_gap": 1.1041000000000007
       },
       "error": null
     },
@@ -23,13 +23,13 @@
       "name": "edta_Co_conf1_pose10",
       "success": true,
       "initial_energy": null,
-      "final_energy": -76.724175735088,
+      "final_energy": -76.72417576262,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 2.928,
-        "total_energy": -76.724175735088,
-        "homo_lumo_gap": 1.3247
+        "total_energy": -76.72417576262,
+        "homo_lumo_gap": 1.3248999999999995
       },
       "error": null
     },
@@ -37,13 +37,13 @@
       "name": "edta_Co_conf1_pose15",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.831347831667,
+      "final_energy": -74.83134681092,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.681,
-        "total_energy": -74.831347831667,
-        "homo_lumo_gap": 1.8856999999999982
+        "dipole_moment": 1.686,
+        "total_energy": -74.83134681092,
+        "homo_lumo_gap": 1.8857999999999997
       },
       "error": null
     },
@@ -51,13 +51,13 @@
       "name": "edta_Co_conf0_pose5",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.825556100478,
+      "final_energy": -74.825555921769,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.59,
-        "total_energy": -74.825556100478,
-        "homo_lumo_gap": 1.7841999999999985
+        "dipole_moment": 1.611,
+        "total_energy": -74.825555921769,
+        "homo_lumo_gap": 1.7828
       },
       "error": null
     },
@@ -79,12 +79,12 @@
       "name": "edta_Co_conf3_pose33",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.824709373941,
+      "final_energy": -74.824709373897,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 4.942,
-        "total_energy": -74.824709373941,
+        "total_energy": -74.824709373897,
         "homo_lumo_gap": 1.971899999999998
       },
       "error": null
@@ -121,12 +121,12 @@
       "name": "edta_Co_conf0_pose3",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.824705371366,
+      "final_energy": -74.824705371461,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 4.951,
-        "total_energy": -74.824705371366,
+        "total_energy": -74.824705371461,
         "homo_lumo_gap": 1.972900000000001
       },
       "error": null
@@ -135,13 +135,13 @@
       "name": "edta_Co_conf2_pose24",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.806564412353,
+      "final_energy": -74.806563474144,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.933,
-        "total_energy": -74.806564412353,
-        "homo_lumo_gap": 1.7478000000000016
+        "dipole_moment": 1.937,
+        "total_energy": -74.806563474144,
+        "homo_lumo_gap": 1.7478999999999996
       },
       "error": null
     },
@@ -149,13 +149,13 @@
       "name": "edta_Co_conf4_pose47",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.806545280473,
+      "final_energy": -74.806545270517,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 1.941,
-        "total_energy": -74.806545280473,
-        "homo_lumo_gap": 1.7460000000000004
+        "total_energy": -74.806545270517,
+        "homo_lumo_gap": 1.7459000000000007
       },
       "error": null
     },
@@ -163,13 +163,13 @@
       "name": "edta_Co_conf3_pose35",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.805705272993,
+      "final_energy": -74.805705586422,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.808,
-        "total_energy": -74.805705272993,
-        "homo_lumo_gap": 1.7273999999999994
+        "dipole_moment": 1.811,
+        "total_energy": -74.805705586422,
+        "homo_lumo_gap": 1.7271999999999998
       },
       "error": null
     },
@@ -177,13 +177,13 @@
       "name": "edta_Co_conf3_pose34",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.804880293933,
+      "final_energy": -74.804887364403,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.303,
-        "total_energy": -74.804880293933,
-        "homo_lumo_gap": 2.1518000000000015
+        "dipole_moment": 3.284,
+        "total_energy": -74.804887364403,
+        "homo_lumo_gap": 2.1522000000000006
       },
       "error": null
     },
@@ -191,13 +191,13 @@
       "name": "edta_Co_conf4_pose46",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.804879439197,
+      "final_energy": -74.804880352559,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.251,
-        "total_energy": -74.804879439197,
-        "homo_lumo_gap": 2.154300000000001
+        "dipole_moment": 3.267,
+        "total_energy": -74.804880352559,
+        "homo_lumo_gap": 2.1483999999999988
       },
       "error": null
     },
@@ -205,12 +205,12 @@
       "name": "edta_Co_conf1_pose12",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.8007026701,
+      "final_energy": -74.800702670177,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 1.271,
-        "total_energy": -74.8007026701,
+        "total_energy": -74.800702670177,
         "homo_lumo_gap": 1.9405999999999999
       },
       "error": null
@@ -233,13 +233,13 @@
       "name": "edta_Co_conf0_pose4",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.795269099836,
+      "final_energy": -74.79526893627,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 4.97,
-        "total_energy": -74.795269099836,
-        "homo_lumo_gap": 1.9673000000000016
+        "total_energy": -74.79526893627,
+        "homo_lumo_gap": 1.9675000000000011
       },
       "error": null
     },
@@ -247,12 +247,12 @@
       "name": "edta_Co_conf1_pose14",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.795217803591,
+      "final_energy": -74.79521780392,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 5.0,
-        "total_energy": -74.795217803591,
+        "total_energy": -74.79521780392,
         "homo_lumo_gap": 2.0045
       },
       "error": null
@@ -261,12 +261,12 @@
       "name": "edta_Co_conf0_pose1",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.794361724989,
+      "final_energy": -74.794361729187,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.945,
-        "total_energy": -74.794361724989,
+        "dipole_moment": 4.944,
+        "total_energy": -74.794361729187,
         "homo_lumo_gap": 1.4873999999999974
       },
       "error": null
@@ -275,13 +275,13 @@
       "name": "edta_Co_conf2_pose20",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.794358868951,
+      "final_energy": -74.794360448729,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.956,
-        "total_energy": -74.794358868951,
-        "homo_lumo_gap": 1.482000000000001
+        "dipole_moment": 4.957,
+        "total_energy": -74.794360448729,
+        "homo_lumo_gap": 1.4827000000000012
       },
       "error": null
     },
@@ -289,12 +289,12 @@
       "name": "edta_Co_conf4_pose43",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.794347703327,
+      "final_energy": -74.794347703328,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 4.996,
-        "total_energy": -74.794347703327,
+        "total_energy": -74.794347703328,
         "homo_lumo_gap": 1.479000000000001
       },
       "error": null
@@ -303,13 +303,13 @@
       "name": "edta_Co_conf1_pose11",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.794343903976,
+      "final_energy": -74.794343561488,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 5.01,
-        "total_energy": -74.794343903976,
-        "homo_lumo_gap": 1.4787999999999997
+        "total_energy": -74.794343561488,
+        "homo_lumo_gap": 1.4786000000000001
       },
       "error": null
     },
@@ -317,12 +317,12 @@
       "name": "edta_Co_conf3_pose31",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.794343533105,
+      "final_energy": -74.794343521142,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.01,
-        "total_energy": -74.794343533105,
+        "dipole_moment": 5.011,
+        "total_energy": -74.794343521142,
         "homo_lumo_gap": 1.4786000000000001
       },
       "error": null
@@ -345,12 +345,12 @@
       "name": "edta_Co_conf2_pose21",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.757210691779,
+      "final_energy": -74.757210691636,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 2.978,
-        "total_energy": -74.757210691779,
+        "total_energy": -74.757210691636,
         "homo_lumo_gap": 1.5409000000000006
       },
       "error": null
@@ -359,12 +359,12 @@
       "name": "edta_Co_conf3_pose32",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.757185130552,
+      "final_energy": -74.757185122499,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 2.985,
-        "total_energy": -74.757185130552,
+        "total_energy": -74.757185122499,
         "homo_lumo_gap": 1.5389
       },
       "error": null
@@ -373,41 +373,13 @@
       "name": "edta_Co_conf0_pose2",
       "success": true,
       "initial_energy": null,
-      "final_energy": -74.757142249837,
+      "final_energy": -74.757142249782,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 3.022,
-        "total_energy": -74.757142249837,
+        "total_energy": -74.757142249782,
         "homo_lumo_gap": 1.532
-      },
-      "error": null
-    },
-    {
-      "name": "edta_Co_conf2_pose29",
-      "success": true,
-      "initial_energy": null,
-      "final_energy": -70.840220610775,
-      "energy_change": null,
-      "convergence": {},
-      "properties": {
-        "dipole_moment": 1.614,
-        "total_energy": -70.840220610775,
-        "homo_lumo_gap": 1.196299999999999
-      },
-      "error": null
-    },
-    {
-      "name": "edta_Co_conf2_pose26",
-      "success": true,
-      "initial_energy": null,
-      "final_energy": -70.84021854198,
-      "energy_change": null,
-      "convergence": {},
-      "properties": {
-        "dipole_moment": 1.722,
-        "total_energy": -70.84021854198,
-        "homo_lumo_gap": 1.1941000000000006
       },
       "error": null
     },
@@ -415,13 +387,41 @@
       "name": "edta_Co_conf2_pose27",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.840217249281,
+      "final_energy": -70.8402206304,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.487,
-        "total_energy": -70.840217249281,
-        "homo_lumo_gap": 1.1937999999999995
+        "dipole_moment": 1.485,
+        "total_energy": -70.8402206304,
+        "homo_lumo_gap": 1.1986000000000008
+      },
+      "error": null
+    },
+    {
+      "name": "edta_Co_conf2_pose26",
+      "success": true,
+      "initial_energy": null,
+      "final_energy": -70.840215276998,
+      "energy_change": null,
+      "convergence": {},
+      "properties": {
+        "dipole_moment": 1.714,
+        "total_energy": -70.840215276998,
+        "homo_lumo_gap": 1.1931999999999992
+      },
+      "error": null
+    },
+    {
+      "name": "edta_Co_conf2_pose29",
+      "success": true,
+      "initial_energy": null,
+      "final_energy": -70.840214568928,
+      "energy_change": null,
+      "convergence": {},
+      "properties": {
+        "dipole_moment": 1.612,
+        "total_energy": -70.840214568928,
+        "homo_lumo_gap": 1.1953999999999994
       },
       "error": null
     },
@@ -429,13 +429,13 @@
       "name": "edta_Co_conf2_pose25",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.840215175722,
+      "final_energy": -70.840213941597,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.542,
-        "total_energy": -70.840215175722,
-        "homo_lumo_gap": 1.197799999999999
+        "dipole_moment": 1.529,
+        "total_energy": -70.840213941597,
+        "homo_lumo_gap": 1.1958000000000002
       },
       "error": null
     },
@@ -443,13 +443,13 @@
       "name": "edta_Co_conf1_pose18",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.768960983466,
+      "final_energy": -70.768948191014,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.461,
-        "total_energy": -70.768960983466,
-        "homo_lumo_gap": 2.2390000000000008
+        "dipole_moment": 4.469,
+        "total_energy": -70.768948191014,
+        "homo_lumo_gap": 2.240999999999998
       },
       "error": null
     },
@@ -457,13 +457,13 @@
       "name": "edta_Co_conf3_pose37",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.765293000195,
+      "final_energy": -70.765295352361,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.139,
-        "total_energy": -70.765293000195,
-        "homo_lumo_gap": 1.4809
+        "dipole_moment": 5.134,
+        "total_energy": -70.765295352361,
+        "homo_lumo_gap": 1.4842999999999993
       },
       "error": null
     },
@@ -471,13 +471,13 @@
       "name": "edta_Co_conf2_pose28",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.758092392112,
+      "final_energy": -70.758093043952,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.206,
-        "total_energy": -70.758092392112,
-        "homo_lumo_gap": 0.928799999999999
+        "dipole_moment": 5.201,
+        "total_energy": -70.758093043952,
+        "homo_lumo_gap": 0.9308000000000014
       },
       "error": null
     },
@@ -485,12 +485,12 @@
       "name": "edta_Co_conf4_pose49",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.750388066379,
+      "final_energy": -70.750388066485,
       "energy_change": null,
       "convergence": {},
       "properties": {
         "dipole_moment": 5.851,
-        "total_energy": -70.750388066379,
+        "total_energy": -70.750388066485,
         "homo_lumo_gap": 2.089600000000001
       },
       "error": null
@@ -499,13 +499,13 @@
       "name": "edta_Co_conf0_pose7",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.742483079256,
+      "final_energy": -70.742483867523,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 6.521,
-        "total_energy": -70.742483079256,
-        "homo_lumo_gap": 1.2066999999999997
+        "dipole_moment": 6.515,
+        "total_energy": -70.742483867523,
+        "homo_lumo_gap": 1.206500000000002
       },
       "error": null
     },
@@ -513,13 +513,13 @@
       "name": "edta_Co_conf3_pose38",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.735220084191,
+      "final_energy": -70.735192570105,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 6.461,
-        "total_energy": -70.735220084191,
-        "homo_lumo_gap": 1.9527000000000019
+        "dipole_moment": 6.444,
+        "total_energy": -70.735192570105,
+        "homo_lumo_gap": 1.956199999999999
       },
       "error": null
     },
@@ -527,13 +527,13 @@
       "name": "edta_Co_conf1_pose16",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.682028991194,
+      "final_energy": -70.682030728185,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.055,
-        "total_energy": -70.682028991194,
-        "homo_lumo_gap": 1.3820999999999994
+        "dipole_moment": 5.062,
+        "total_energy": -70.682030728185,
+        "homo_lumo_gap": 1.3843000000000014
       },
       "error": null
     },
@@ -541,13 +541,13 @@
       "name": "edta_Co_conf3_pose36",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.677937036606,
+      "final_energy": -70.677938671932,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.122,
-        "total_energy": -70.677937036606,
-        "homo_lumo_gap": 0.43230000000000146
+        "dipole_moment": 3.12,
+        "total_energy": -70.677938671932,
+        "homo_lumo_gap": 0.4314
       },
       "error": null
     },
@@ -555,13 +555,13 @@
       "name": "edta_Co_conf1_pose17",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.657387366435,
+      "final_energy": -70.657370286074,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 7.361,
-        "total_energy": -70.657387366435,
-        "homo_lumo_gap": 0.6736000000000004
+        "dipole_moment": 7.345,
+        "total_energy": -70.657370286074,
+        "homo_lumo_gap": 0.6743000000000023
       },
       "error": null
     },
@@ -569,13 +569,13 @@
       "name": "edta_Co_conf3_pose39",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.642053597088,
+      "final_energy": -70.642056680272,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.594,
-        "total_energy": -70.642053597088,
-        "homo_lumo_gap": 0.6834999999999987
+        "dipole_moment": 2.588,
+        "total_energy": -70.642056680272,
+        "homo_lumo_gap": 0.6853000000000016
       },
       "error": null
     },
@@ -583,13 +583,13 @@
       "name": "edta_Co_conf4_pose48",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.610951832431,
+      "final_energy": -70.610947151388,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.98,
-        "total_energy": -70.610951832431,
-        "homo_lumo_gap": 0.9560999999999993
+        "dipole_moment": 2.999,
+        "total_energy": -70.610947151388,
+        "homo_lumo_gap": 0.9572000000000003
       },
       "error": null
     },
@@ -597,13 +597,13 @@
       "name": "edta_Co_conf0_pose9",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.607008146106,
+      "final_energy": -70.607006971506,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 7.008,
-        "total_energy": -70.607008146106,
-        "homo_lumo_gap": 0.5550999999999995
+        "dipole_moment": 7.009,
+        "total_energy": -70.607006971506,
+        "homo_lumo_gap": 0.5566999999999993
       },
       "error": null
     },
@@ -611,13 +611,13 @@
       "name": "edta_Co_conf0_pose6",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.606995019203,
+      "final_energy": -70.607002392178,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 6.933,
-        "total_energy": -70.606995019203,
-        "homo_lumo_gap": 0.5538999999999987
+        "dipole_moment": 6.96,
+        "total_energy": -70.607002392178,
+        "homo_lumo_gap": 0.5547000000000004
       },
       "error": null
     },
@@ -625,13 +625,13 @@
       "name": "edta_Co_conf1_pose19",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.60337945185,
+      "final_energy": -70.603369452999,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 12.893,
-        "total_energy": -70.60337945185,
-        "homo_lumo_gap": 0.7677000000000014
+        "dipole_moment": 12.8,
+        "total_energy": -70.603369452999,
+        "homo_lumo_gap": 0.7708000000000013
       },
       "error": null
     },
@@ -639,13 +639,13 @@
       "name": "edta_Co_conf0_pose8",
       "success": true,
       "initial_energy": null,
-      "final_energy": -70.570113880981,
+      "final_energy": -70.572981981394,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.643,
-        "total_energy": -70.570113880981,
-        "homo_lumo_gap": 1.262299999999998
+        "dipole_moment": 2.334,
+        "total_energy": -70.572981981394,
+        "homo_lumo_gap": 1.2253000000000007
       },
       "error": null
     },

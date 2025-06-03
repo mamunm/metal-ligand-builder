@@ -1,11 +1,11 @@
 {
   "generation_info": {
-    "timestamp": "2025-06-03T11:38:23.172491",
+    "timestamp": "2025-06-03T11:51:20.852164",
     "orca_config": {
       "method": "B3LYP",
       "basis_set": "def2-SVP",
       "dispersion": "D3BJ",
-      "solvent": "water",
+      "solvent": "vacuum",
       "n_cores": 4
     },
     "multiplicities_considered": [
@@ -36,7 +36,7 @@
       {
         "structure_index": 0,
         "original_title": "edta_conformer_3_opt",
-        "xtb_energy": -67.990440695264,
+        "xtb_energy": -67.990442101841,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_001/mult_1/ligand_001_m1.inp",
@@ -45,7 +45,7 @@
       {
         "structure_index": 1,
         "original_title": "edta_conformer_4_opt",
-        "xtb_energy": -67.988696656188,
+        "xtb_energy": -67.988695896699,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_002/mult_1/ligand_002_m1.inp",
@@ -63,7 +63,7 @@
       {
         "structure_index": 3,
         "original_title": "edta_conformer_0_opt",
-        "xtb_energy": -67.984648424125,
+        "xtb_energy": -67.984648423759,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_004/mult_1/ligand_004_m1.inp",
@@ -72,7 +72,7 @@
       {
         "structure_index": 4,
         "original_title": "edta_conformer_2_opt",
-        "xtb_energy": -67.982552610794,
+        "xtb_energy": -67.982552648475,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_005/mult_1/ligand_005_m1.inp",

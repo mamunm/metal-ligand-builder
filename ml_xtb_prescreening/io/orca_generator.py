@@ -214,12 +214,17 @@ class ORCAGenerator:
         if self.config.dispersion:
             keywords.append(self.config.dispersion)
         
-        # Add solvation
-        if self.config.solvent_model and self.config.solvent:
+        # Add solvation (only if not vacuum)
+        if (self.config.solvent_model and self.config.solvent and 
+            self.config.solvent.lower() != "vacuum"):
             keywords.append(f"{self.config.solvent_model}({self.config.solvent})")
         
         # Add optimization
         keywords.append("Opt")
+        
+        # Add frequency calculation
+        if self.config.calculate_frequencies:
+            keywords.append("Freq")
         
         # Add additional keywords
         keywords.extend(self.config.additional_keywords)
@@ -356,8 +361,19 @@ class ORCAGenerator:
         else:
             return 0
         
-        # Adjust for charge
-        d_electrons = neutral_d - metal.charge
+        # Adjust for charge (s electrons removed first for TM cations)
+        if metal.charge >= 0:
+            # For neutral and cations, use standard d-count
+            # but adjust for oxidation state effects
+            if metal.charge <= 2:
+                # Common +1, +2 cations: s electrons removed first
+                d_electrons = neutral_d
+            else:
+                # Higher oxidation states: some d electrons also removed
+                d_electrons = max(0, neutral_d - (metal.charge - 2))
+        else:
+            # For anions (rare), electrons added to d
+            d_electrons = neutral_d - metal.charge
         
         # Handle special cases (Cr, Cu have different configurations)
         if metal.symbol == "Cr" and metal.charge == 0:

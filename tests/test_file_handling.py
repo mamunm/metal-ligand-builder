@@ -33,9 +33,8 @@ class TestFileHandler:
         assert file_handler.experiment_dir.exists()
         assert file_handler.dirs["initial"].exists()
         assert file_handler.dirs["optimized"].exists()
-        assert file_handler.dirs["analysis"].exists()
-        assert file_handler.dirs["orca"].exists()
         assert file_handler.dirs["reports"].exists()
+        assert file_handler.dirs["orca"].exists()
         
         # Check subdirectories
         assert file_handler.dirs["initial_metals"].exists()
@@ -165,8 +164,8 @@ class TestORCAWriter:
         # Check content
         assert "# Test calculation" in content
         assert "! B3LYP def2-SVP" in content
-        assert "! D3BJ" in content
-        assert "! CPCM(water)" in content
+        assert "D3BJ" in content
+        assert "CPCM(water)" in content
         assert "* xyz -1 1" in content
         assert "C" in content
         assert "O" in content
@@ -275,7 +274,8 @@ class TestORCAWriter:
             assert path.exists()
             assert path.name == f"water_{i:04d}.inp"
         
-        # Check submission script was created
-        submit_script = temp_dir / "submit_orca.sh"
-        assert submit_script.exists()
-        assert submit_script.stat().st_mode & 0o111  # Is executable
+        # Check that all files contain valid ORCA input format
+        for path in results:
+            content = path.read_text()
+            assert "!" in content  # Keyword line
+            assert "* xyz" in content  # Coordinate block

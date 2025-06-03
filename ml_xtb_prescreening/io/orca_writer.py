@@ -154,8 +154,13 @@ class ORCAWriter:
         if self.config.dispersion:
             keywords.append(self.config.dispersion)
         
-        if self.config.solvent_model and self.config.solvent:
+        if (self.config.solvent_model and self.config.solvent and 
+            self.config.solvent.lower() != "vacuum"):
             keywords.append(f"{self.config.solvent_model}({self.config.solvent})")
+        
+        # Add frequency calculation
+        if self.config.calculate_frequencies:
+            keywords.append("Freq")
         
         keywords.extend(self.config.additional_keywords)
         

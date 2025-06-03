@@ -52,6 +52,7 @@ class ORCAConfig:
     multiplicity: int = 1
     max_core: int = 2000  # MB per core
     n_cores: int = 4
+    calculate_frequencies: bool = False
     additional_keywords: List[str] = field(default_factory=list)
     
     def to_input_string(self, charge: int) -> str:
@@ -64,8 +65,13 @@ class ORCAConfig:
         if self.dispersion:
             keywords.append(self.dispersion)
             
-        if self.solvent_model and self.solvent:
+        if (self.solvent_model and self.solvent and 
+            self.solvent.lower() != "vacuum"):
             keywords.append(f"{self.solvent_model}({self.solvent})")
+        
+        # Add frequency calculation
+        if self.calculate_frequencies:
+            keywords.append("Freq")
             
         keywords.extend(self.additional_keywords)
         
