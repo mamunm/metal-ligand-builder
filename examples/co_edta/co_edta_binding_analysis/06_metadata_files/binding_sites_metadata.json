@@ -1,0 +1,98 @@
+{
+  "ligand_name": "edta",
+  "n_binding_sites": 6,
+  "binding_sites": [
+    {
+      "index": 0,
+      "type": "carboxylate",
+      "atom_indices": [
+        5,
+        6,
+        6
+      ],
+      "score": 0.9,
+      "position": [
+        -1.75931110366676,
+        -0.0879458497419189,
+        -4.05446617574103
+      ],
+      "denticity": 2
+    },
+    {
+      "index": 1,
+      "type": "carboxylate",
+      "atom_indices": [
+        9,
+        10,
+        10
+      ],
+      "score": 0.9,
+      "position": [
+        -3.9528306331259846,
+        -2.618138875901939,
+        0.07099347528944679
+      ],
+      "denticity": 2
+    },
+    {
+      "index": 2,
+      "type": "carboxylate",
+      "atom_indices": [
+        14,
+        15,
+        15
+      ],
+      "score": 0.9,
+      "position": [
+        3.802801356625608,
+        -0.8225757956096064,
+        0.7357437520455365
+      ],
+      "denticity": 2
+    },
+    {
+      "index": 3,
+      "type": "carboxylate",
+      "atom_indices": [
+        18,
+        19,
+        19
+      ],
+      "score": 0.9,
+      "position": [
+        1.4804215248989814,
+        4.141309921897348,
+        1.756608334995227
+      ],
+      "denticity": 2
+    },
+    {
+      "index": 4,
+      "type": "amine",
+      "atom_indices": [
+        2
+      ],
+      "score": 0.7,
+      "position": [
+        -1.0381837195487609,
+        -1.231782109614716,
+        -0.9239046615833958
+      ],
+      "denticity": 1
+    },
+    {
+      "index": 5,
+      "type": "amine",
+      "atom_indices": [
+        11
+      ],
+      "score": 0.7,
+      "position": [
+        1.4942214436382564,
+        0.8369428376601621,
+        1.0554523134665872
+      ],
+      "denticity": 1
+    }
+  ]
+}

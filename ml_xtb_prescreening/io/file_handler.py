@@ -44,9 +44,9 @@ class FileHandler:
                 "ligands": None,
                 "complexes": None
             },
-            "03_binding_analysis": None,
-            "04_orca_inputs": None,
-            "05_reports": None
+            "03_orca_inputs": None,
+            "04_reports": None,
+            "06_metadata_files": None
         }
         
         # Create directories
@@ -63,9 +63,9 @@ class FileHandler:
         self.dirs["optimized_ligands"] = self.dirs["optimized"] / "ligands"
         self.dirs["optimized_complexes"] = self.dirs["optimized"] / "complexes"
         
-        self.dirs["analysis"] = self.experiment_dir / "03_binding_analysis"
-        self.dirs["orca"] = self.experiment_dir / "04_orca_inputs"
-        self.dirs["reports"] = self.experiment_dir / "05_reports"
+        self.dirs["orca"] = self.experiment_dir / "03_orca_inputs"
+        self.dirs["reports"] = self.experiment_dir / "04_reports"
+        self.dirs["metadata"] = self.experiment_dir / "06_metadata_files"
         
         logger.info(f"Created directory structure at: {self.experiment_dir}")
     
@@ -141,7 +141,7 @@ class FileHandler:
         Returns:
             Path to saved file
         """
-        metadata_path = self.experiment_dir / filename
+        metadata_path = self.dirs["metadata"] / filename
         with open(metadata_path, 'w') as f:
             json.dump(metadata, f, indent=2, default=str)
         

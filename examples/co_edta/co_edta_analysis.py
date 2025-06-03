@@ -22,7 +22,9 @@ from ml_xtb_prescreening import (
     XTBConfig,
     ORCAConfig
 )
-# from ml_xtb_prescreening.core.logger import logger  # Import if you want to control debug logging
+
+import os
+os.environ["ML_XTB_DEBUG"] = "0"
 
 
 def analyze_co_edta_complex():
@@ -48,9 +50,11 @@ def analyze_co_edta_complex():
         experiment_name="co_edta_binding_analysis",
         
         # Structure generation settings
-        max_poses=50,          # Generate 50 different metal-ligand poses
-        n_conformers=20,       # Generate 20 EDTA conformers
-        rmsd_threshold=0.5,    # RMSD threshold for removing duplicate structures
+        max_poses_per_conformer=10,  # Generate 10 refined poses per conformer
+        n_conformers=5,              # Generate 5 EDTA conformers (total 50 poses max)
+        rmsd_threshold=0.5,          # RMSD threshold for removing duplicate structures
+        optimize_poses_with_ff=True, # Use force field optimization for poses
+        ff_method="auto",            # Auto-select RDKit or OpenBabel
         
         # XTB optimization settings
         xtb_config=XTBConfig(
@@ -101,6 +105,11 @@ def analyze_co_edta_complex():
     
     try:
         # Generate all structures at once
+        # This creates:
+        # - 5 EDTA conformers using RDKit/OpenBabel
+        # - 1 Co²⁺ metal ion structure
+        # - Up to 10 refined poses per conformer (50 total max)
+        #   with force field optimization and conformational sampling
         structures = complex.generate_all_structures()
         
     except Exception as e:
@@ -165,8 +174,12 @@ def analyze_co_edta_complex():
         report_path = complex.generate_report()
         
         # Analysis complete
-        print(f"Analysis complete! Results saved in: {complex.work_dir}")
-        print(f"HTML report: {report_path}")
+        print(f"Analysis complete! Results saved in: {', '.join(saved_files)}")
+        try:
+            rel_path = str(Path(report_path).relative_to(Path.cwd()))
+        except:
+            rel_path = report_path
+        print(f"HTML report: {rel_path}")
         
     except Exception as e:
         print(f"ERROR: Results saving failed: {e}")
@@ -176,9 +189,6 @@ def main():
     """Main function with error handling."""
     try:
         analyze_co_edta_complex()
-    except KeyboardInterrupt:
-        print("\nAnalysis interrupted by user.")
-        sys.exit(1)
     except Exception as e:
         print(f"ERROR: Unexpected error: {e}")
         import traceback

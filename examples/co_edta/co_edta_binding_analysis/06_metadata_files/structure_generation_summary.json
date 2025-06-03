@@ -1,0 +1,37 @@
+{
+  "experiment_name": "co_edta_binding_analysis",
+  "timestamp": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta",
+  "ligand": {
+    "name": "edta",
+    "smiles": "C(CN(CC(=O)O)CC(=O)O)N(CC(=O)O)CC(=O)O",
+    "charge": 0,
+    "n_conformers": 5
+  },
+  "metal": {
+    "symbol": "Co",
+    "charge": 2,
+    "n_geometries": 1
+  },
+  "binding_sites": {
+    "n_sites": 6,
+    "types": [
+      "carboxylate",
+      "carboxylate",
+      "carboxylate",
+      "carboxylate",
+      "amine",
+      "amine"
+    ]
+  },
+  "complexes": {
+    "n_poses": 50,
+    "total_charge": 2
+  },
+  "directories": {
+    "experiment": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis",
+    "initial_structures": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures",
+    "metals": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/metals",
+    "ligands": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/ligands",
+    "complexes": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/complexes"
+  }
+}

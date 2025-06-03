@@ -1,0 +1,14 @@
+{
+  "ligand_name": "edta",
+  "smiles": "C(CN(CC(=O)O)CC(=O)O)N(CC(=O)O)CC(=O)O",
+  "charge": 0,
+  "protonation_state": "neutral",
+  "n_conformers": 5,
+  "conformer_files": [
+    "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/ligands/edta_conf_000.xyz",
+    "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/ligands/edta_conf_001.xyz",
+    "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/ligands/edta_conf_002.xyz",
+    "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/ligands/edta_conf_003.xyz",
+    "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/ligands/edta_conf_004.xyz"
+  ]
+}

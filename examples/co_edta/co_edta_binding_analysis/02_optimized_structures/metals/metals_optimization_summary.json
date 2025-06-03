@@ -1,0 +1,23 @@
+{
+  "structure_type": "metals",
+  "timestamp": "2025-06-03T11:37:45.715881",
+  "n_structures": 1,
+  "n_successful": 1,
+  "n_failed": 0,
+  "structures": [
+    {
+      "name": "Co2+_bare",
+      "success": true,
+      "initial_energy": null,
+      "final_energy": -2.153475494214,
+      "energy_change": null,
+      "convergence": {},
+      "properties": {
+        "dipole_moment": 0.0,
+        "total_energy": -2.153475494214,
+        "homo_lumo_gap": 0.0
+      },
+      "error": null
+    }
+  ]
+}

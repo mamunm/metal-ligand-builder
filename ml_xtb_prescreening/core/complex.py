@@ -19,6 +19,7 @@ from ..optimizers.xtb_workflow import XTBWorkflowManager
 from ..generators.metal_generator import MetalGenerator
 from ..generators.binding_site_detector import BindingSiteDetector
 from ..generators.pose_generator import PoseGenerator
+from ..generators.enhanced_pose_generator import EnhancedPoseGenerator
 from ..analysis.report_generator import ReportGenerator
 
 
@@ -92,7 +93,11 @@ class MetalLigandComplex:
         self.conformer_generator = ConformerGenerator()
         self.metal_generator = MetalGenerator()
         self.binding_site_detector = BindingSiteDetector()
-        self.pose_generator = PoseGenerator()
+        # Use enhanced pose generator if force field optimization is enabled
+        if self.config.optimize_poses_with_ff:
+            self.pose_generator = EnhancedPoseGenerator()
+        else:
+            self.pose_generator = PoseGenerator()
         
         # Initialize result storage
         self.binding_sites: List[BindingSite] = []
@@ -108,8 +113,16 @@ class MetalLigandComplex:
         }
         
         logger.info(f"Initialized {self.metal.symbol}-{self.ligand.name} complex analysis")
-        logger.info(f"Working directory: {self.work_dir}")
+        logger.info(f"Working directory: {self._get_relative_path(self.work_dir)}")
         logger.debug(f"Metal: {self.metal.symbol}{self.metal.charge:+d}, Ligand: {self.ligand.name}{self.ligand.charge:+d}")
+    
+    def _get_relative_path(self, path: Path) -> str:
+        """Get relative path from current working directory."""
+        try:
+            return str(path.relative_to(Path.cwd()))
+        except ValueError:
+            # If path is not relative to cwd, just return the name
+            return path.name
     
     def generate_ligand_conformers(self) -> List[Geometry]:
         """
@@ -165,7 +178,7 @@ class MetalLigandComplex:
                 self.ligand.atoms = conformer.atoms
                 self.ligand.coordinates = conformer.coordinates
         
-        logger.info(f"Generated and saved {len(saved_conformers)} conformers to {self.file_handler.dirs['initial_ligands']}")
+        logger.info(f"Generated and saved {len(saved_conformers)} conformers to {self._get_relative_path(self.file_handler.dirs['initial_ligands'])}")
         
         # Clean up work directory
         import shutil
@@ -381,17 +394,26 @@ class MetalLigandComplex:
             logger.info(f"Generating poses for conformer {conf_idx + 1}/{n_conformers_to_use}")
             
             # Generate poses for this conformer
-            poses_per_conformer = self.config.max_poses // n_conformers_to_use
-            if conf_idx == 0:  # Add remainder to first conformer
-                poses_per_conformer += self.config.max_poses % n_conformers_to_use
-            
-            poses = self.pose_generator.generate_poses(
-                ligand_geometry=conformer,
-                metal=self.metal,
-                binding_sites=self.binding_sites,
-                max_poses=poses_per_conformer,
-                rmsd_threshold=self.config.rmsd_threshold
-            )
+            if isinstance(self.pose_generator, EnhancedPoseGenerator):
+                # Use enhanced generator with force field optimization
+                poses = self.pose_generator.generate_poses(
+                    ligand_geometry=conformer,
+                    metal=self.metal,
+                    binding_sites=self.binding_sites,
+                    max_poses_per_conformer=self.config.max_poses_per_conformer,
+                    rmsd_threshold=self.config.rmsd_threshold,
+                    optimize_with_ff=self.config.optimize_poses_with_ff,
+                    ff_method=self.config.ff_method
+                )
+            else:
+                # Use basic generator (backward compatibility)
+                poses = self.pose_generator.generate_poses(
+                    ligand_geometry=conformer,
+                    metal=self.metal,
+                    binding_sites=self.binding_sites,
+                    max_poses=self.config.max_poses_per_conformer,
+                    rmsd_threshold=self.config.rmsd_threshold
+                )
             
             # Save poses
             for pose in poses:
@@ -462,35 +484,26 @@ class MetalLigandComplex:
         Returns:
             Dictionary with 'ligands', 'metals', and 'complexes' keys
         """
-        logger.info("="*60)
         logger.info("Generating all initial structures")
-        logger.info("="*60)
         
         # Step 1: Generate ligand conformers
-        logger.info("\nStep 1: Generating ligand conformers")
+        logger.info("Step 1: Generating ligand conformers")
         ligand_conformers = self.generate_ligand_conformers()
         
         # Step 2: Generate metal geometries
-        logger.info("\nStep 2: Generating metal geometries")
+        logger.info("Step 2: Generating metal geometries")
         metal_geometries = self.generate_metal_geometries()
         
         # Step 3: Detect binding sites
-        logger.info("\nStep 3: Detecting binding sites")
+        logger.info("Step 3: Detecting binding sites")
         binding_sites = self.detect_binding_sites()
         
         # Step 4: Generate complex poses
-        logger.info("\nStep 4: Generating complex poses")
+        logger.info("Step 4: Generating complex poses")
         complex_poses = self.generate_complex_poses()
         
         # Summary
-        logger.info("\n" + "="*60)
-        logger.info("Structure generation complete!")
-        logger.info(f"  Ligand conformers: {len(ligand_conformers)}")
-        logger.info(f"  Metal geometries: {len(metal_geometries)}")
-        logger.info(f"  Binding sites: {len(binding_sites)}")
-        logger.info(f"  Complex poses: {len(complex_poses)}")
-        logger.info(f"  Output directory: {self.work_dir}")
-        logger.info("="*60)
+        logger.info(f"Structure generation complete: {len(ligand_conformers)} conformers, {len(metal_geometries)} metals, {len(complex_poses)} poses")
         
         # Save overall generation summary
         summary = {
@@ -557,9 +570,7 @@ class MetalLigandComplex:
         Returns:
             Dictionary with optimization results for each structure type
         """
-        logger.info("="*60)
         logger.info("Starting XTB Optimization Workflow")
-        logger.info("="*60)
         
         # Set up charge map
         if custom_charges is None:
@@ -602,9 +613,7 @@ class MetalLigandComplex:
                 self.results['optimized_complexes'] = [r for r in results['complexes'] if r.success]
             
             # Print summary
-            logger.info("\n" + "="*60)
             logger.info("Optimization Summary:")
-            logger.info("="*60)
             
             total_structures = 0
             total_successful = 0
@@ -626,8 +635,8 @@ class MetalLigandComplex:
                     if len(failed) > 5:
                         logger.warning(f"    ... and {len(failed) - 5} more")
             
-            logger.info(f"\nTotal: {total_successful}/{total_structures} successful")
-            logger.info(f"Output directory: {self.work_dir / '02_optimized_structures'}")
+            logger.info(f"Total: {total_successful}/{total_structures} successful")
+            logger.info(f"Output directory: {self._get_relative_path(self.work_dir / '02_optimized_structures')}")
             
             # Save optimization metadata
             metadata = {
@@ -876,9 +885,7 @@ class MetalLigandComplex:
         """
         n_best = n_best or self.config.keep_top_n
         
-        logger.info("="*60)
         logger.info(f"Preparing ORCA inputs for top {n_best} structures")
-        logger.info("="*60)
         
         # Check if optimization results exist
         if "optimization_results" not in self.results:
@@ -910,7 +917,7 @@ class MetalLigandComplex:
             self.results['orca_inputs'] = results
             
             # Print summary
-            logger.info("\nORCA Input Generation Summary:")
+            logger.info("ORCA Input Generation Summary:")
             logger.info("-" * 40)
             
             total_files = 0
@@ -921,29 +928,15 @@ class MetalLigandComplex:
                     total_files += n_files
                     logger.info(f"{struct_type.capitalize()}s: {n_files} input files")
             
-            logger.info(f"\nTotal: {total_files} ORCA input files")
-            logger.info(f"Output directory: {self.work_dir / '04_orca_inputs'}")
+            logger.info(f"Total: {total_files} ORCA input files")
+            logger.info(f"Output directory: {self._get_relative_path(self.work_dir / '03_orca_inputs')}")
             
             # Show multiplicity information
             if results.get("summary", {}).get("multiplicities"):
                 mults = results["summary"]["multiplicities"]
                 logger.info(f"Multiplicities considered: {mults}")
             
-            # Print directory structure
-            logger.info("\nDirectory structure:")
-            logger.info("04_orca_inputs/")
-            for struct_type in ["metals", "ligands", "complexes"]:
-                if f"{struct_type[:-1]}_inputs" in results and results[f"{struct_type[:-1]}_inputs"]:
-                    logger.info(f"├── {struct_type}/")
-                    if multiplicities:
-                        for mult in multiplicities[:3]:  # Show first 3
-                            logger.info(f"│   ├── mult_{mult}/")
-                        if len(multiplicities) > 3:
-                            logger.info(f"│   └── ... ({len(multiplicities)} total)")
-                    else:
-                        logger.info("│   └── mult_*/")
-            
-            logger.info("\nORCA input preparation complete!")
+            logger.info("ORCA input preparation complete!")
             
             return results
             
@@ -1059,9 +1052,7 @@ class MetalLigandComplex:
         Returns:
             Dictionary with paths to saved files
         """
-        logger.info("="*60)
-        logger.info("Saving analysis results")
-        logger.info("="*60)
+        logger.info("Saving analysis results...")
         
         # Initialize report generator
         report_gen = ReportGenerator(self.work_dir)
@@ -1072,14 +1063,14 @@ class MetalLigandComplex:
         try:
             archive_path = report_gen.save_results_archive(self.results)
             saved_files["archive"] = archive_path
-            logger.info(f"Results archive saved: {archive_path}")
+            logger.info(f"Results archive saved: {self._get_relative_path(archive_path)}")
         except Exception as e:
             logger.error(f"Failed to save results archive: {e}")
         
         # 2. Save CSV summaries
         try:
             self._save_csv_summaries()
-            saved_files["csv_summaries"] = self.work_dir / "05_reports"
+            saved_files["csv_summaries"] = self.work_dir / "04_reports"
             logger.info("CSV summaries saved")
         except Exception as e:
             logger.error(f"Failed to save CSV summaries: {e}")
@@ -1089,7 +1080,7 @@ class MetalLigandComplex:
             best_structures_dir = self._copy_best_structures()
             if best_structures_dir:
                 saved_files["best_structures"] = best_structures_dir
-                logger.info(f"Best structures copied to: {best_structures_dir}")
+                logger.info(f"Best structures copied to: {self._get_relative_path(best_structures_dir)}")
         except Exception as e:
             logger.error(f"Failed to copy best structures: {e}")
         
@@ -1097,7 +1088,7 @@ class MetalLigandComplex:
         try:
             index_path = self._create_directory_index()
             saved_files["directory_index"] = index_path
-            logger.info(f"Directory index created: {index_path}")
+            logger.info(f"Directory index created: {self._get_relative_path(index_path)}")
         except Exception as e:
             logger.error(f"Failed to create directory index: {e}")
         
@@ -1105,14 +1096,11 @@ class MetalLigandComplex:
         try:
             summary_path = self._save_workflow_summary()
             saved_files["workflow_summary"] = summary_path
-            logger.info(f"Workflow summary saved: {summary_path}")
+            logger.info(f"Workflow summary saved: {self._get_relative_path(summary_path)}")
         except Exception as e:
             logger.error(f"Failed to save workflow summary: {e}")
         
-        logger.info("\n" + "="*60)
-        logger.info("Results saved successfully!")
-        logger.info(f"Main directory: {self.work_dir}")
-        logger.info("="*60)
+        logger.info("Results saved successfully! See README.md for directory structure and details.")
         
         return saved_files
     
@@ -1121,7 +1109,7 @@ class MetalLigandComplex:
         if "optimization_results" not in self.results:
             return
         
-        reports_dir = self.work_dir / "05_reports"
+        reports_dir = self.work_dir / "04_reports"
         reports_dir.mkdir(exist_ok=True)
         
         opt_results = self.results["optimization_results"]
@@ -1140,7 +1128,9 @@ class MetalLigandComplex:
                     "initial_energy": getattr(result.initial_geometry, 'energy', None),
                     "final_energy": result.energy if result.success else None,
                     "energy_change": (result.energy - getattr(result.initial_geometry, 'energy', result.energy)) 
-                                   if result.success and result.energy is not None and hasattr(result.initial_geometry, 'energy') else None,
+                                   if (result.success and result.energy is not None and 
+                                       hasattr(result.initial_geometry, 'energy') and 
+                                       getattr(result.initial_geometry, 'energy', None) is not None) else None,
                     "homo_lumo_gap": result.properties.get("homo_lumo_gap") if result.properties else None,
                     "dipole_moment": result.properties.get("dipole_moment") if result.properties else None,
                     "error_message": result.error_message if not result.success else None
@@ -1184,7 +1174,7 @@ class MetalLigandComplex:
         if "optimization_results" not in self.results:
             return None
         
-        best_dir = self.work_dir / "06_best_structures"
+        best_dir = self.work_dir / "05_best_structures"
         best_dir.mkdir(exist_ok=True)
         
         opt_results = self.results["optimization_results"]
@@ -1236,26 +1226,31 @@ class MetalLigandComplex:
             "│   ├── metals/              # XTB optimized metals",
             "│   ├── ligands/             # XTB optimized ligands",
             "│   └── complexes/           # XTB optimized complexes",
-            "├── 04_orca_inputs/",
+            "├── 03_orca_inputs/",
             "│   ├── metals/mult_*/       # ORCA inputs by multiplicity",
             "│   ├── ligands/mult_*/",
             "│   └── complexes/mult_*/",
-            "├── 05_reports/",
+            "├── 04_reports/",
             "│   ├── analysis_report.html # Comprehensive HTML report",
             "│   ├── *_results.csv       # CSV summaries",
             "│   └── *_top10.csv         # Best 10 structures",
-            "└── 06_best_structures/",
-            "    ├── metals/              # 5 best metal structures",
-            "    ├── ligands/             # 5 best ligand conformers",
-            "    └── complexes/           # 5 best complexes",
+            "├── 05_best_structures/",
+            "│   ├── metals/              # 5 best metal structures",
+            "│   ├── ligands/             # 5 best ligand conformers",
+            "│   └── complexes/           # 5 best complexes",
+            "└── 06_metadata_files/",
+            "    ├── results_archive.json   # Complete results archive",
+            "    ├── workflow_summary.json  # Workflow summary",
+            "    └── *_metadata.json        # Various metadata files",
             "```",
             "",
             "## Key Files",
             "",
-            "- `results_archive.json`: Complete results in JSON format",
-            "- `workflow_summary.json`: High-level workflow summary",
-            "- `05_reports/analysis_report.html`: Comprehensive analysis report",
-            "- `06_best_structures/`: Easy access to best structures",
+            "- `06_metadata_files/results_archive.json`: Complete results in JSON format",
+            "- `06_metadata_files/workflow_summary.json`: High-level workflow summary",
+            "- `06_metadata_files/*_metadata.json`: Various metadata files",
+            "- `04_reports/analysis_report.html`: Comprehensive analysis report",
+            "- `05_best_structures/`: Easy access to best structures",
             "",
             "## Analysis Summary",
             ""
@@ -1302,9 +1297,9 @@ class MetalLigandComplex:
             "results_summary": {},
             "file_locations": {
                 "work_directory": str(self.work_dir),
-                "reports": str(self.work_dir / "05_reports"),
-                "best_structures": str(self.work_dir / "06_best_structures"),
-                "orca_inputs": str(self.work_dir / "04_orca_inputs")
+                "reports": str(self.work_dir / "04_reports"),
+                "best_structures": str(self.work_dir / "05_best_structures"),
+                "orca_inputs": str(self.work_dir / "03_orca_inputs")
             }
         }
         
@@ -1320,7 +1315,7 @@ class MetalLigandComplex:
                         "lowest_energy": min(r.energy for r in successful) if successful else None
                     }
         
-        summary_path = self.work_dir / "workflow_summary.json"
+        summary_path = self.work_dir / "06_metadata_files" / "workflow_summary.json"
         with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=2, default=str)
         
@@ -1349,7 +1344,7 @@ class MetalLigandComplex:
         # Prepare configuration data for the report
         config_data = {
             "experiment_name": self.config.experiment_name,
-            "max_poses": self.config.max_poses,
+            "max_poses": self.config.max_poses_per_conformer,
             "n_conformers": self.config.n_conformers,
             "xtb_config": {
                 "method": self.config.xtb_config.method,
@@ -1372,7 +1367,7 @@ class MetalLigandComplex:
                 config=config_data
             )
             
-            logger.info(f"Comprehensive analysis report generated: {report_path}")
+            logger.info(f"Comprehensive analysis report generated: {self._get_relative_path(report_path)}")
             return report_path
             
         except Exception as e:

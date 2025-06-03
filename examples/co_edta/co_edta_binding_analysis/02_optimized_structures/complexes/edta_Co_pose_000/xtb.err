@@ -1,0 +1,11 @@
+abnormal termination of xtb
+Note: The following floating-point exceptions are signalling: IEEE_INVALID_FLAG IEEE_DIVIDE_BY_ZERO IEEE_OVERFLOW_FLAG IEEE_UNDERFLOW_FLAG
+ERROR STOP 
+
+Error termination. Backtrace:
+#0  0x10121ff5f
+#1  0x101220c13
+#2  0x1012220f3
+#3  0x1001e97d3
+#4  0x1000ec233
+#5  0x100399f47

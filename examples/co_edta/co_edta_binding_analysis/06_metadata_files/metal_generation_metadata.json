@@ -1,0 +1,17 @@
+{
+  "metal_symbol": "Co",
+  "metal_charge": 2,
+  "coordination_numbers": [
+    4,
+    6
+  ],
+  "preferred_geometries": [
+    "tetrahedral",
+    "octahedral"
+  ],
+  "n_geometries": 1,
+  "geometry_files": [
+    "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/01_initial_structures/metals/Co_ion.xyz"
+  ],
+  "includes_hydrated": false
+}

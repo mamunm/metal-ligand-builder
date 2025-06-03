@@ -34,7 +34,7 @@ class ORCAGenerator:
         """
         self.base_dir = Path(base_dir)
         self.config = config or ORCAConfig()
-        self.orca_dir = self.base_dir / "04_orca_inputs"
+        self.orca_dir = self.base_dir / "03_orca_inputs"
         self.orca_dir.mkdir(parents=True, exist_ok=True)
     
     def generate_from_optimization_results(
@@ -142,12 +142,14 @@ class ORCAGenerator:
         for i, result in enumerate(optimized_results):
             geometry = result.optimized_geometry
             
-            # Create base name
+            # Create base name and structure directory
             base_name = f"{struct_type[:-1]}_{i+1:03d}"
+            struct_dir = type_dir / base_name
+            struct_dir.mkdir(exist_ok=True)
             
             # Generate input for each multiplicity
             for mult in multiplicities:
-                mult_dir = type_dir / f"mult_{mult}"
+                mult_dir = struct_dir / f"mult_{mult}"
                 mult_dir.mkdir(exist_ok=True)
                 
                 # Determine if UHF is needed
@@ -278,11 +280,21 @@ class ORCAGenerator:
         Determine possible multiplicities for metal-ligand complex.
         
         Returns list of multiplicities to consider.
+        Note: multiplicities are consistent - either all odd (1,3,5,7,9) or all even (2,4,6,8).
         """
         # Get d-electron count
         d_electrons = self._get_d_electron_count(metal)
         
-        # Common multiplicity patterns
+        # Calculate total electrons for the complex
+        # This determines if we need odd or even multiplicities
+        # Total charge of complex
+        complex_charge = metal.charge + ligand.charge
+        
+        # For transition metal complexes, we typically consider:
+        # - If total electrons is even -> odd multiplicities (1,3,5,7,9)
+        # - If total electrons is odd -> even multiplicities (2,4,6,8)
+        
+        # Common multiplicity patterns based on d-electron count
         if d_electrons == 0:  # d0
             return [1]
         elif d_electrons == 1:  # d1
@@ -388,4 +400,12 @@ class ORCAGenerator:
         with open(summary_file, 'w') as f:
             json.dump(summary, f, indent=2)
         
-        logger.info(f"Saved generation summary to {summary_file}")
+        logger.info(f"Saved generation summary to {self._get_relative_path(summary_file)}")
+    
+    def _get_relative_path(self, path: Path) -> str:
+        """Get relative path from current working directory."""
+        try:
+            return str(path.relative_to(Path.cwd()))
+        except ValueError:
+            # If path is not relative to cwd, just return the name
+            return path.name

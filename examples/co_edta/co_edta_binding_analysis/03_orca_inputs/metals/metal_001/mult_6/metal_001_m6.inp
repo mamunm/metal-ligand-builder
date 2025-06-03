@@ -1,0 +1,30 @@
+# metal_001 Multiplicity=6
+# Generated on 2025-06-03 11:38:23
+
+! UHF B3LYP def2-SVP RIJCOSX def2/J D3BJ CPCM(water) Opt
+
+%maxcore 2000
+
+%pal
+  nprocs 4
+end
+
+%scf
+  MaxIter 300
+  UHF true
+  ConvTol 1e-7
+end
+
+%geom
+  MaxIter 100
+  Trust 0.3
+end
+
+%output
+  Print[P_MOs] 1
+  Print[P_Overlap] 1
+end
+
+* xyz 2 6
+  Co     0.0000000000     0.0000000000     0.0000000000
+*

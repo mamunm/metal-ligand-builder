@@ -15,8 +15,7 @@ except ImportError:
     RDKIT_AVAILABLE = False
 
 from ..core.data_models import Geometry
-
-logger = logging.getLogger(__name__)
+from ..core.logger import logger
 
 
 class ConformerGenerator:

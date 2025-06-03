@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metal-Ligand Binding Analysis Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .summary-box {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .metric {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .warning {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Metal-Ligand Binding Analysis Report</h1>
+        
+        <div class="summary-box">
+            <h3>System: <span class="formula">[Co(edta)]^{+2}</span></h3>
+            <p><strong>Generated:</strong> 2025-06-03T11:38:23.230761</p>
+            <p><strong>Experiment:</strong> co_edta_binding_analysis</p>
+        </div>
+        
+        <h2>Executive Summary</h2>
+        <div>
+            <div class="metric">Ligand Conformers: 5</div>
+            <div class="metric">Complex Poses: 50</div>
+            <div class="metric">Binding Sites: 0</div>
+        </div>
+        
+        <h2>Optimization Results</h2><table><tr><th>Structure Type</th><th>Total</th><th>Successful</th><th>Success Rate</th><th>Min Energy (Hartree)</th></tr><tr><td>Metals</td><td>1</td><td class='success'>1</td><td>100.0%</td><td>-2.153475</td></tr><tr><td>Ligands</td><td>1</td><td class='success'>1</td><td>100.0%</td><td>-67.990441</td></tr><tr><td>Complexes</td><td>1</td><td class='success'>0</td><td>92.0%</td><td>-77.804621</td></tr></table>
+        
+        <h2>Energy Analysis</h2><h3>Relative Energies (kcal/mol)</h3><table><tr><th>Structure Type</th><th>Within 5 kcal/mol</th><th>Within 10 kcal/mol</th></tr><tr><td>Complexes</td><td>1</td><td>1</td></tr><tr><td>Ligands</td><td>5</td><td>5</td></tr><tr><td>Metals</td><td>1</td><td>1</td></tr></table>
+        
+        <h2>Best Structures</h2><div class="summary-box">
+                <h3>Lowest Energy Complex</h3>
+                <p><strong>Structure:</strong> edta_Co_conf4_pose40_opt</p>
+                <p><strong>Energy:</strong> -77.804621 Hartree</p>
+                <p><strong>HOMO-LUMO Gap:</strong> 1.105 eV</p>
+            </div>
+        
+        <h2>ORCA Input Preparation</h2><div class='summary-box'><p><strong>Files Generated:</strong></p><ul><li>Metals: 1 files</li><li>Ligands: 5 files</li><li>Multiplicities considered: 2, 4, 6</li></ul></div>
+        
+        <h2>Configuration Details</h2>
+        <table>
+            <tr><th>Parameter</th><th>Value</th></tr>
+            <tr><td>Metal</td><td>Co (charge: +2)</td></tr>
+            <tr><td>Ligand</td><td>edta (charge: +0)</td></tr>
+            <tr><td>Complex Charge</td><td>+2</td></tr>
+            <tr><td>XTB Method</td><td>gfn2</td></tr>
+            <tr><td>Solvent</td><td>None</td></tr>
+            <tr><td>Max Poses</td><td>10</td></tr>
+            <tr><td>Conformers</td><td>5</td></tr>
+        </table>
+    </div>
+</body>
+</html>

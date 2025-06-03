@@ -1,0 +1,2 @@
+index,structure_name,success,initial_energy,final_energy,energy_change,homo_lumo_gap,dipole_moment,error_message,relative_energy_kcal
+0,Co2+_bare,True,,-2.153475494214,,0.0,0.0,,0.0

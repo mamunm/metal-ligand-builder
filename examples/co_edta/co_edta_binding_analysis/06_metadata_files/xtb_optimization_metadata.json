@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-06-03 11:38:23.170984",
+  "xtb_config": {
+    "method": "gfn2",
+    "solvent": null,
+    "convergence": "normal"
+  },
+  "charges": {
+    "metals": 2,
+    "ligands": 0,
+    "complexes": 2
+  },
+  "create_folders": true,
+  "summary": {
+    "metals": {
+      "total": 1,
+      "successful": 1,
+      "failed": 0
+    },
+    "ligands": {
+      "total": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    "complexes": {
+      "total": 50,
+      "successful": 46,
+      "failed": 4
+    }
+  }
+}

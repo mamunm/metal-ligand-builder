@@ -24,7 +24,7 @@ class ReportGenerator:
             work_dir: Working directory containing results
         """
         self.work_dir = Path(work_dir)
-        self.reports_dir = self.work_dir / "05_reports"
+        self.reports_dir = self.work_dir / "04_reports"
         self.reports_dir.mkdir(parents=True, exist_ok=True)
     
     def generate_full_report(
@@ -590,7 +590,7 @@ class ReportGenerator:
         Returns:
             Path to results archive
         """
-        archive_path = self.work_dir / "results_archive.json"
+        archive_path = self.work_dir / "06_metadata_files" / "results_archive.json"
         
         # Create serializable version of results
         serializable_results = self._make_serializable(results)

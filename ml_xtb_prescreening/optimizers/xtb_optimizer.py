@@ -32,6 +32,14 @@ class XTBOptimizer:
         """Check if xTB is available."""
         return self.xtb_path is not None
     
+    def _get_relative_path(self, path: Path) -> str:
+        """Get relative path from current working directory."""
+        try:
+            return str(path.relative_to(Path.cwd()))
+        except ValueError:
+            # If path is not relative to cwd, just return the name
+            return path.name
+    
     def optimize(
         self, 
         geometry: Geometry,
@@ -90,10 +98,16 @@ class XTBOptimizer:
         # Add configuration options
         cmd.extend(self.config.to_cmd_args())
         
-        # Log the full command
-        cmd_str = ' '.join(cmd)
-        logger.debug(f"Running xTB command: {cmd_str}")
-        logger.debug(f"Working directory: {work_dir}")
+        # Log the full command with relative paths
+        cmd_display = []
+        for part in cmd:
+            if '/' in part and Path(part).exists():
+                cmd_display.append(self._get_relative_path(Path(part)))
+            else:
+                cmd_display.append(part)
+        cmd_str_display = ' '.join(cmd_display)
+        logger.debug(f"Running xTB command: {cmd_str_display}")
+        logger.debug(f"Working directory: {self._get_relative_path(work_dir)}")
         
         # Run xTB
         try:
@@ -229,10 +243,16 @@ class XTBOptimizer:
         # Add configuration options
         cmd.extend(self.config.to_cmd_args())
         
-        # Log the full command
-        cmd_str = ' '.join(cmd)
-        logger.info(f"Running xTB single-point command: {cmd_str}")
-        logger.debug(f"Working directory: {work_dir}")
+        # Log the full command with relative paths
+        cmd_display = []
+        for part in cmd:
+            if '/' in part and Path(part).exists():
+                cmd_display.append(self._get_relative_path(Path(part)))
+            else:
+                cmd_display.append(part)
+        cmd_str_display = ' '.join(cmd_display)
+        logger.info(f"Running xTB single-point command: {cmd_str_display}")
+        logger.debug(f"Working directory: {self._get_relative_path(work_dir)}")
         
         # Run xTB
         try:

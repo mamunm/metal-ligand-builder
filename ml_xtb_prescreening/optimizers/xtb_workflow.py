@@ -8,6 +8,13 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime
 import tempfile
 
+try:
+    from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, TimeRemainingColumn
+    from rich.console import Console
+    RICH_AVAILABLE = True
+except ImportError:
+    RICH_AVAILABLE = False
+
 from ..core.data_models import Geometry, OptimizationResult
 from ..core.config import XTBConfig
 from ..core.logger import logger
@@ -57,6 +64,14 @@ class XTBWorkflowManager:
         if not self.optimizer.check_available():
             raise RuntimeError("xTB not found. Please install xTB to use optimization features.")
     
+    def _get_relative_path(self, path: Path) -> str:
+        """Get relative path from current working directory."""
+        try:
+            return str(path.relative_to(Path.cwd()))
+        except ValueError:
+            # If path is not relative to cwd, just return the name
+            return path.name
+    
     def optimize_all_structures(
         self,
         input_folder: Optional[str] = None,
@@ -92,10 +107,8 @@ class XTBWorkflowManager:
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
         logger.info(f"Starting XTB optimization workflow")
-        logger.info(f"Input directory: {self.input_dir}")
-        logger.info(f"Output directory: {self.output_dir}")
-        logger.info(f"Create folders: {self.create_folders}")
-        logger.info(f"Workers: {self.n_workers}")
+        logger.debug(f"Input: {self._get_relative_path(self.input_dir)}, Output: {self._get_relative_path(self.output_dir)}")
+        logger.debug(f"Workers: {self.n_workers}, Create folders: {self.create_folders}")
         
         results = {}
         
@@ -107,14 +120,14 @@ class XTBWorkflowManager:
                 logger.warning(f"Directory not found: {struct_dir}")
                 continue
             
-            logger.info(f"\nProcessing {struct_type}...")
+            logger.info(f"Processing {struct_type}...")
             
             # Get charge for this structure type
             charge = charge_map.get(struct_type, 0)
             
             # Note if we'll be doing single-point for metals
             if struct_type == "metals":
-                logger.info("Note: Metal ions will use single-point calculations instead of optimization")
+                logger.debug("Note: Metal ions will use single-point calculations instead of optimization")
             
             # Optimize structures
             type_results = self._optimize_structure_type(
@@ -123,9 +136,13 @@ class XTBWorkflowManager:
             
             results[struct_type] = type_results
             
-            logger.info(f"Completed {struct_type}: "
-                       f"{len([r for r in type_results if r.success])}/"
-                       f"{len(type_results)} successful")
+            # Log summary only
+            successful = len([r for r in type_results if r.success])
+            total = len(type_results)
+            if successful == total:
+                logger.info(f"Completed {struct_type}: {successful}/{total} successful ✓")
+            else:
+                logger.info(f"Completed {struct_type}: {successful}/{total} successful ({total - successful} failed)")
         
         # Save overall summary
         self._save_workflow_summary(results)
@@ -174,41 +191,97 @@ class XTBWorkflowManager:
         
         # Run optimizations in parallel
         results = []
-        with ProcessPoolExecutor(max_workers=self.n_workers) as executor:
-            # Submit all tasks
-            future_to_task = {
-                executor.submit(
-                    self._optimize_single_structure,
-                    task['xyz_file'],
-                    task['charge'],
-                    task['output_dir'],
-                    struct_type  # Pass structure type
-                ): task
-                for task in tasks
-            }
-            
-            # Process completed tasks
-            for future in as_completed(future_to_task):
-                task = future_to_task[future]
-                try:
-                    result = future.result()
-                    results.append(result)
+        
+        if RICH_AVAILABLE and len(tasks) > 1:
+            # Use rich progress bar
+            with Progress(
+                SpinnerColumn(),
+                TextColumn("[progress.description]{task.description}"),
+                BarColumn(),
+                TaskProgressColumn(),
+                TimeRemainingColumn(),
+                console=Console(stderr=True),  # Use stderr to not interfere with stdout
+                transient=True  # Remove progress bar when done
+            ) as progress:
+                task_id = progress.add_task(f"[cyan]Optimizing {struct_type}...", total=len(tasks))
+                
+                with ProcessPoolExecutor(max_workers=self.n_workers) as executor:
+                    # Submit all tasks
+                    future_to_task = {
+                        executor.submit(
+                            self._optimize_single_structure,
+                            task['xyz_file'],
+                            task['charge'],
+                            task['output_dir'],
+                            struct_type
+                        ): task
+                        for task in tasks
+                    }
                     
-                    if result.success:
-                        logger.info(f"✓ {task['xyz_file'].name}")
-                    else:
-                        logger.warning(f"✗ {task['xyz_file'].name}: {result.error_message}")
+                    # Process completed tasks
+                    completed = 0
+                    failed = 0
+                    for future in as_completed(future_to_task):
+                        task = future_to_task[future]
+                        try:
+                            result = future.result()
+                            results.append(result)
+                            
+                            if result.success:
+                                completed += 1
+                            else:
+                                failed += 1
+                                
+                        except Exception as e:
+                            failed += 1
+                            # Create failed result
+                            geom = self._read_xyz(task['xyz_file'])
+                            results.append(OptimizationResult(
+                                success=False,
+                                initial_geometry=geom,
+                                error_message=str(e)
+                            ))
                         
-                except Exception as e:
-                    logger.error(f"Failed to optimize {task['xyz_file'].name}: {str(e)}")
-                    
-                    # Create failed result
-                    geom = self._read_xyz(task['xyz_file'])
-                    results.append(OptimizationResult(
-                        success=False,
-                        initial_geometry=geom,
-                        error_message=str(e)
-                    ))
+                        # Update progress
+                        progress.update(task_id, advance=1, 
+                                      description=f"[cyan]Optimizing {struct_type}... [green]{completed} done[/green], [red]{failed} failed[/red]")
+        else:
+            # Fallback to original implementation for single files or no rich
+            with ProcessPoolExecutor(max_workers=self.n_workers) as executor:
+                # Submit all tasks
+                future_to_task = {
+                    executor.submit(
+                        self._optimize_single_structure,
+                        task['xyz_file'],
+                        task['charge'],
+                        task['output_dir'],
+                        struct_type
+                    ): task
+                    for task in tasks
+                }
+                
+                # Process completed tasks
+                for future in as_completed(future_to_task):
+                    task = future_to_task[future]
+                    try:
+                        result = future.result()
+                        results.append(result)
+                        
+                        if result.success:
+                            logger.info(f"✓ {task['xyz_file'].name}")
+                        else:
+                            logger.warning(f"✗ {task['xyz_file'].name}: {result.error_message}")
+                            
+                    except Exception as e:
+                        logger.error(f"Failed to optimize {task['xyz_file'].name}: {str(e)}")
+                        
+                        # Create failed result
+                        geom = self._read_xyz(task['xyz_file'])
+                        results.append(OptimizationResult(
+                            success=False,
+                            initial_geometry=geom,
+                            error_message=str(e)
+                        ))
         
         # Save results summary for this structure type
         self._save_type_summary(struct_type, results, output_type_dir)
@@ -407,7 +480,7 @@ class XTBWorkflowManager:
         with open(summary_file, 'w') as f:
             json.dump(summary, f, indent=2)
         
-        logger.info(f"Saved {struct_type} summary to {summary_file}")
+        logger.info(f"Saved {struct_type} summary to {self._get_relative_path(summary_file)}")
     
     def _save_workflow_summary(self, results: Dict[str, List[OptimizationResult]]) -> None:
         """Save overall workflow summary."""
@@ -441,4 +514,4 @@ class XTBWorkflowManager:
         with open(summary_file, 'w') as f:
             json.dump(summary, f, indent=2)
         
-        logger.info(f"\nWorkflow summary saved to {summary_file}")
+        logger.info(f"Workflow summary saved to {self._get_relative_path(summary_file)}")

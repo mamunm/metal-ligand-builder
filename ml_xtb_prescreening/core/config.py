@@ -85,9 +85,11 @@ class ComplexConfig:
     experiment_name: str = "metal_ligand_binding"
     
     # Structure generation
-    max_poses: int = 50
+    max_poses_per_conformer: int = 25  # Number of refined poses per ligand conformer
     n_conformers: int = 30
     rmsd_threshold: float = 0.5  # Å
+    optimize_poses_with_ff: bool = True  # Use force field optimization for poses
+    ff_method: str = "auto"  # "rdkit", "obabel", or "auto" (tries RDKit then OpenBabel)
     
     # Optimization settings
     optimize_metal: bool = True

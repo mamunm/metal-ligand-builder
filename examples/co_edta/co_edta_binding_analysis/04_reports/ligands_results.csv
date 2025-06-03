@@ -1,0 +1,6 @@
+index,structure_name,success,initial_energy,final_energy,energy_change,homo_lumo_gap,dipole_moment,error_message,relative_energy_kcal
+4,edta_conformer_3,True,,-67.990440695264,,2.4809,4.515,,0.0
+2,edta_conformer_4,True,,-67.988696656188,,2.9995000000000003,2.831,,1.0944010433272047
+0,edta_conformer_1,True,,-67.985403667288,,2.9010999999999996,2.771,,3.160782776061945
+1,edta_conformer_0,True,,-67.984648424125,,2.9804000000000004,3.942,,3.6347050160651424
+3,edta_conformer_2,True,,-67.982552610794,,2.8138999999999994,1.933,,4.9498477371329175
