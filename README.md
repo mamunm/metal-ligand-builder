@@ -188,14 +188,6 @@ uv run pytest -m "not requires_obabel and not requires_xtb"
 uv run pytest -v
 ```
 
-## Development Status
-
-This package provides a complete workflow for metal-ligand binding analysis, from structure generation through ORCA input preparation.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
