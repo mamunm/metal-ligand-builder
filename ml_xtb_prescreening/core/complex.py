@@ -586,12 +586,13 @@ class MetalLigandComplex:
         for struct_type, charge in charge_map.items():
             logger.info(f"  {struct_type}: {charge:+d}")
         
-        # Create workflow manager
+        # Create workflow manager with ligand name for validation
         workflow_manager = XTBWorkflowManager(
             base_dir=self.work_dir,
             config=self.config.xtb_config,
             n_workers=self.config.n_workers or 4,
-            create_folders=create_folders
+            create_folders=create_folders,
+            ligand_name=self.ligand.name  # Pass ligand name for specific validation
         )
         
         # Run optimizations
@@ -604,13 +605,15 @@ class MetalLigandComplex:
             # Store results
             self.results['optimization_results'] = results
             
-            # Update stored optimized structures
+            # Update stored optimized structures (only valid ones for complexes)
             if 'metals' in results:
                 self.results['optimized_metals'] = [r for r in results['metals'] if r.success]
             if 'ligands' in results:
                 self.results['optimized_ligands'] = [r for r in results['ligands'] if r.success]
             if 'complexes' in results:
-                self.results['optimized_complexes'] = [r for r in results['complexes'] if r.success]
+                # For complexes, only store those that passed validation
+                self.results['optimized_complexes'] = [r for r in results['complexes'] 
+                                                       if r.success and r.validation_passed]
             
             # Print summary
             logger.info("Optimization Summary:")
@@ -621,10 +624,21 @@ class MetalLigandComplex:
             for struct_type, type_results in results.items():
                 n_total = len(type_results)
                 n_success = len([r for r in type_results if r.success])
+                n_valid = len([r for r in type_results if r.success and r.validation_passed])
                 total_structures += n_total
                 total_successful += n_success
                 
-                logger.info(f"{struct_type.capitalize()}: {n_success}/{n_total} successful")
+                logger.info(f"{struct_type.capitalize()}: {n_success}/{n_total} successful, {n_valid} validated")
+                
+                # Show validation failures for complexes
+                if struct_type == "complexes" and self.ligand.name:
+                    invalid = [r for r in type_results if r.success and not r.validation_passed]
+                    if invalid:
+                        logger.warning(f"  Invalid {struct_type} structures ({len(invalid)} total):")
+                        for r in invalid[:5]:  # Show first 5 validation failures
+                            logger.warning(f"    - {r.initial_geometry.title}: {r.validation_message}")
+                        if len(invalid) > 5:
+                            logger.warning(f"    ... and {len(invalid) - 5} more")
                 
                 # Show failed optimizations
                 failed = [r for r in type_results if not r.success]
@@ -652,7 +666,9 @@ class MetalLigandComplex:
                     struct_type: {
                         "total": len(type_results),
                         "successful": len([r for r in type_results if r.success]),
-                        "failed": len([r for r in type_results if not r.success])
+                        "failed": len([r for r in type_results if not r.success]),
+                        "valid": len([r for r in type_results if r.success and r.validation_passed]),
+                        "invalid": len([r for r in type_results if r.success and not r.validation_passed])
                     }
                     for struct_type, type_results in results.items()
                 }
@@ -705,8 +721,9 @@ class MetalLigandComplex:
         
         opt_results = self.results["optimization_results"]
         
-        # Get successful optimizations
-        successful_complexes = [r for r in opt_results.get("complexes", []) if r.success and r.energy is not None]
+        # Get successful and validated optimizations (only validated complexes)
+        successful_complexes = [r for r in opt_results.get("complexes", []) 
+                               if r.success and r.energy is not None and r.validation_passed]
         successful_metals = [r for r in opt_results.get("metals", []) if r.success and r.energy is not None]
         successful_ligands = [r for r in opt_results.get("ligands", []) if r.success and r.energy is not None]
         
@@ -812,7 +829,7 @@ class MetalLigandComplex:
             
             complex_results = self.results["optimization_results"]["complexes"]
             successful_complexes = [(i, r.energy) for i, r in enumerate(complex_results) 
-                                  if r.success and r.energy is not None]
+                                  if r.success and r.energy is not None and r.validation_passed]
             # Sort by energy (lowest = most stable)
             rankings = sorted(successful_complexes, key=lambda x: x[1])
             
@@ -1184,9 +1201,15 @@ class MetalLigandComplex:
             if struct_type not in opt_results:
                 continue
             
-            # Get successful results
-            successful = [r for r in opt_results[struct_type] 
-                         if r.success and r.optimized_geometry]
+            # Get successful and validated results (for complexes, require validation)
+            if struct_type == "complexes":
+                # For complexes, only include validated structures
+                successful = [r for r in opt_results[struct_type] 
+                             if r.success and r.optimized_geometry and r.validation_passed]
+            else:
+                # For metals and ligands, use standard filtering
+                successful = [r for r in opt_results[struct_type] 
+                             if r.success and r.optimized_geometry]
             
             if not successful:
                 continue

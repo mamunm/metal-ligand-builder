@@ -1,6 +1,6 @@
 {
   "generation_info": {
-    "timestamp": "2025-06-03T11:51:20.852164",
+    "timestamp": "2025-06-04T20:57:56.403185",
     "orca_config": {
       "method": "B3LYP",
       "basis_set": "def2-SVP",
@@ -10,8 +10,7 @@
     },
     "multiplicities_considered": [
       2,
-      4,
-      6
+      4
     ]
   },
   "generated_files": {
@@ -27,8 +26,8 @@
         "original_title": "Co2+_bare",
         "xtb_energy": -2.153475494214,
         "charge": 2,
-        "multiplicity": 6,
-        "input_file": "03_orca_inputs/metals/metal_001/mult_6/metal_001_m6.inp",
+        "multiplicity": 4,
+        "input_file": "03_orca_inputs/metals/metal_001/mult_4/metal_001_m4.inp",
         "use_uhf": true
       }
     ],
@@ -36,7 +35,7 @@
       {
         "structure_index": 0,
         "original_title": "edta_conformer_3_opt",
-        "xtb_energy": -67.990442101841,
+        "xtb_energy": -67.990437481234,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_001/mult_1/ligand_001_m1.inp",
@@ -45,7 +44,7 @@
       {
         "structure_index": 1,
         "original_title": "edta_conformer_4_opt",
-        "xtb_energy": -67.988695896699,
+        "xtb_energy": -67.988696656193,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_002/mult_1/ligand_002_m1.inp",
@@ -54,7 +53,7 @@
       {
         "structure_index": 2,
         "original_title": "edta_conformer_1_opt",
-        "xtb_energy": -67.985403667288,
+        "xtb_energy": -67.985403667323,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_003/mult_1/ligand_003_m1.inp",
@@ -63,7 +62,7 @@
       {
         "structure_index": 3,
         "original_title": "edta_conformer_0_opt",
-        "xtb_energy": -67.984648423759,
+        "xtb_energy": -67.984648424125,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_004/mult_1/ligand_004_m1.inp",
@@ -72,7 +71,7 @@
       {
         "structure_index": 4,
         "original_title": "edta_conformer_2_opt",
-        "xtb_energy": -67.982552648475,
+        "xtb_energy": -67.982551512426,
         "charge": 0,
         "multiplicity": 1,
         "input_file": "03_orca_inputs/ligands/ligand_005/mult_1/ligand_005_m1.inp",

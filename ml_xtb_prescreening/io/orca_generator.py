@@ -82,12 +82,18 @@ class ORCAGenerator:
             if struct_type not in optimization_results:
                 continue
             
-            # Get successful optimizations
+            # Get successful and valid optimizations
             successful = [r for r in optimization_results[struct_type] 
-                         if r.success and r.optimized_geometry is not None]
+                         if r.success and r.optimized_geometry is not None and r.validation_passed]
             
             if not successful:
-                logger.warning(f"No successful optimizations found for {struct_type}")
+                # Check if there were successful but invalid structures
+                successful_invalid = [r for r in optimization_results[struct_type] 
+                                    if r.success and r.optimized_geometry is not None and not r.validation_passed]
+                if successful_invalid:
+                    logger.warning(f"All {len(successful_invalid)} successful optimizations for {struct_type} failed validation")
+                else:
+                    logger.warning(f"No successful optimizations found for {struct_type}")
                 continue
             
             # Sort by energy and take n_lowest

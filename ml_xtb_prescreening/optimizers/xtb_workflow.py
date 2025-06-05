@@ -7,6 +7,7 @@ from typing import Dict, List, Optional, Tuple, Any
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime
 import tempfile
+import numpy as np
 
 try:
     from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn, TimeRemainingColumn
@@ -19,6 +20,7 @@ from ..core.data_models import Geometry, OptimizationResult
 from ..core.config import XTBConfig
 from ..core.logger import logger
 from .xtb_optimizer import XTBOptimizer
+from ..analysis.structure_validator import StructureValidator
 
 
 class XTBWorkflowManager:
@@ -37,7 +39,8 @@ class XTBWorkflowManager:
         base_dir: Path,
         config: Optional[XTBConfig] = None,
         n_workers: int = 4,
-        create_folders: bool = True
+        create_folders: bool = True,
+        ligand_name: Optional[str] = None
     ):
         """
         Initialize XTB workflow manager.
@@ -47,11 +50,13 @@ class XTBWorkflowManager:
             config: XTB configuration
             n_workers: Number of parallel workers
             create_folders: If True, create folder for each optimization
+            ligand_name: Name of the ligand (e.g., "edta") for specific validation
         """
         self.base_dir = Path(base_dir)
         self.config = config or XTBConfig()
         self.n_workers = n_workers
         self.create_folders = create_folders
+        self.ligand_name = ligand_name
         
         # Set up directories
         self.input_dir = self.base_dir / "01_initial_structures"
@@ -59,6 +64,9 @@ class XTBWorkflowManager:
         
         # Initialize optimizer
         self.optimizer = XTBOptimizer(self.config)
+        
+        # Initialize structure validator
+        self.validator = StructureValidator()
         
         # Check if XTB is available
         if not self.optimizer.check_available():
@@ -385,6 +393,40 @@ class XTBWorkflowManager:
                     work_dir=work_dir
                 )
             
+            # Validate the optimized structure if optimization was successful
+            if result.success and result.optimized_geometry:
+                # Determine if this is a complex and find metal indices
+                is_complex = struct_type == "complexes" if struct_type else False
+                metal_indices = None
+                
+                if is_complex:
+                    # Try to identify metal atoms
+                    metal_indices = []
+                    for i, atom in enumerate(result.optimized_geometry.atoms):
+                        if self._is_metal(atom):
+                            metal_indices.append(i)
+                
+                # Run validation
+                if is_complex and self.ligand_name:
+                    # Use two-stage validation for known ligands
+                    is_valid, validation_msg = self.validator.validate_complex_two_stage(
+                        result, 
+                        ligand_name=self.ligand_name,
+                        metal_indices=metal_indices
+                    )
+                else:
+                    # Use generic validation
+                    is_valid, validation_msg = self.validator.validate_optimization_result(
+                        result, is_complex=is_complex, metal_indices=metal_indices
+                    )
+                
+                # Update result with validation status
+                result.validation_passed = is_valid
+                result.validation_message = validation_msg
+                
+                if not is_valid:
+                    logger.warning(f"Structure validation failed for {xyz_file.stem}: {validation_msg}")
+            
             # If successful and not creating folders, copy key files
             if result.success and not self.create_folders:
                 if result.optimized_geometry:
@@ -447,6 +489,8 @@ class XTBWorkflowManager:
             "n_structures": len(results),
             "n_successful": len([r for r in results if r.success]),
             "n_failed": len([r for r in results if not r.success]),
+            "n_valid": len([r for r in results if r.success and r.validation_passed]),
+            "n_invalid": len([r for r in results if r.success and not r.validation_passed]),
             "structures": []
         }
         
@@ -454,6 +498,8 @@ class XTBWorkflowManager:
             struct_data = {
                 "name": result.initial_geometry.title,
                 "success": result.success,
+                "validation_passed": result.validation_passed,
+                "validation_message": result.validation_message,
                 "initial_energy": None,
                 "final_energy": result.energy,
                 "energy_change": None,
@@ -515,3 +561,13 @@ class XTBWorkflowManager:
             json.dump(summary, f, indent=2)
         
         logger.info(f"Workflow summary saved to {self._get_relative_path(summary_file)}")
+    
+    def _is_metal(self, atom: str) -> bool:
+        """Check if atom is a metal."""
+        metals = {
+            'Li', 'Be', 'Na', 'Mg', 'Al', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn',
+            'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo',
+            'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Cs', 'Ba', 'La', 'Hf',
+            'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi'
+        }
+        return atom in metals

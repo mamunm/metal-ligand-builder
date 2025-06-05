@@ -1,48 +1,56 @@
 {
   "structure_type": "ligands",
-  "timestamp": "2025-06-03T11:50:46.381579",
+  "timestamp": "2025-06-04T20:57:23.094277",
   "n_structures": 5,
   "n_successful": 5,
   "n_failed": 0,
+  "n_valid": 5,
+  "n_invalid": 0,
   "structures": [
     {
       "name": "edta_conformer_3",
       "success": true,
+      "validation_passed": true,
+      "validation_message": "Structure is valid",
       "initial_energy": null,
-      "final_energy": -67.990442101841,
+      "final_energy": -67.990437481234,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.519,
-        "total_energy": -67.990442101841,
-        "homo_lumo_gap": 2.4782
+        "total_energy": -67.990437481234,
+        "dipole_moment": 0.2,
+        "homo_lumo_gap": 2.4823000000000004
       },
       "error": null
     },
     {
       "name": "edta_conformer_4",
       "success": true,
+      "validation_passed": true,
+      "validation_message": "Structure is valid",
       "initial_energy": null,
-      "final_energy": -67.988695896699,
+      "final_energy": -67.988696656193,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.831,
-        "total_energy": -67.988695896699,
-        "homo_lumo_gap": 2.999999999999999
+        "total_energy": -67.988696656193,
+        "dipole_moment": 0.558,
+        "homo_lumo_gap": 2.9995000000000003
       },
       "error": null
     },
     {
       "name": "edta_conformer_1",
       "success": true,
+      "validation_passed": true,
+      "validation_message": "Structure is valid",
       "initial_energy": null,
-      "final_energy": -67.985403667288,
+      "final_energy": -67.985403667323,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.771,
-        "total_energy": -67.985403667288,
+        "total_energy": -67.985403667323,
+        "dipole_moment": 0.963,
         "homo_lumo_gap": 2.9010999999999996
       },
       "error": null
@@ -50,13 +58,15 @@
     {
       "name": "edta_conformer_0",
       "success": true,
+      "validation_passed": true,
+      "validation_message": "Structure is valid",
       "initial_energy": null,
-      "final_energy": -67.984648423759,
+      "final_energy": -67.984648424125,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.942,
-        "total_energy": -67.984648423759,
+        "total_energy": -67.984648424125,
+        "dipole_moment": -0.496,
         "homo_lumo_gap": 2.9804000000000004
       },
       "error": null
@@ -64,14 +74,16 @@
     {
       "name": "edta_conformer_2",
       "success": true,
+      "validation_passed": true,
+      "validation_message": "Structure is valid",
       "initial_energy": null,
-      "final_energy": -67.982552648475,
+      "final_energy": -67.982551512426,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.933,
-        "total_energy": -67.982552648475,
-        "homo_lumo_gap": 2.8138999999999994
+        "total_energy": -67.982551512426,
+        "dipole_moment": 0.244,
+        "homo_lumo_gap": 2.8137
       },
       "error": null
     }

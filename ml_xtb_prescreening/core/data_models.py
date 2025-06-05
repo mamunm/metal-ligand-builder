@@ -135,6 +135,8 @@ class OptimizationResult:
     properties: Dict[str, Any] = field(default_factory=dict)  # HOMO-LUMO, dipole, etc.
     output_files: Dict[str, Path] = field(default_factory=dict)
     error_message: Optional[str] = None
+    validation_passed: bool = True
+    validation_message: str = ""
 
 
 @dataclass

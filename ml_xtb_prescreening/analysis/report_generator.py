@@ -221,7 +221,11 @@ class ReportGenerator:
                 continue
             
             type_results = opt_results[struct_type]
-            successful = [r for r in type_results if r.success and r.energy]
+            if struct_type == "complexes":
+                # For complexes, only include validated structures
+                successful = [r for r in type_results if r.success and r.energy and r.validation_passed]
+            else:
+                successful = [r for r in type_results if r.success and r.energy]
             
             if not successful:
                 continue
@@ -290,7 +294,11 @@ class ReportGenerator:
             if struct_type not in opt_results:
                 continue
             
-            successful = [r for r in opt_results[struct_type] if r.success and r.energy]
+            if struct_type == "complexes":
+                # For complexes, only include validated structures
+                successful = [r for r in opt_results[struct_type] if r.success and r.energy and r.validation_passed]
+            else:
+                successful = [r for r in opt_results[struct_type] if r.success and r.energy]
             if not successful:
                 continue
             
@@ -318,9 +326,10 @@ class ReportGenerator:
         if "optimization_results" in results:
             opt_results = results["optimization_results"]
             
-            # Best complex
+            # Best complex (only validated structures)
             if "complexes" in opt_results:
-                complexes = [r for r in opt_results["complexes"] if r.success and r.energy]
+                complexes = [r for r in opt_results["complexes"] 
+                           if r.success and r.energy and r.validation_passed]
                 if complexes:
                     complexes.sort(key=lambda r: r.energy)
                     best_complex = complexes[0]

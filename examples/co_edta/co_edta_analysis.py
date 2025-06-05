@@ -120,8 +120,12 @@ def analyze_co_edta_complex():
         return
     
     # =========================================================================
-    # STEP 4: XTB Optimization
+    # STEP 4: XTB Optimization with Automatic Validation
     # =========================================================================
+    # The optimization now includes automatic two-stage validation for EDTA:
+    # - Stage 1: Checks EDTA structural integrity (4 carboxylates, no fragmentation)
+    # - Stage 2: Validates metal coordination geometry
+    # Only validated structures proceed to binding energy calculations and ORCA
     
     # Check if xTB is available
     import shutil
@@ -133,6 +137,14 @@ def analyze_co_edta_complex():
         # Run optimization with folder creation for detailed results
         optimization_results = complex.optimize_all_structures(create_folders=True)
         
+        # Optional: Access validation details
+        if 'complexes' in optimization_results:
+            valid_count = sum(1 for r in optimization_results['complexes'] 
+                            if r.success and r.validation_passed)
+            invalid_count = sum(1 for r in optimization_results['complexes'] 
+                              if r.success and not r.validation_passed)
+            print(f"\nValidation Results: {valid_count} valid, {invalid_count} invalid complexes")
+        
     except Exception as e:
         print(f"ERROR: XTB optimization failed: {e}")
         return
@@ -140,13 +152,16 @@ def analyze_co_edta_complex():
     # =========================================================================
     # STEP 5: Calculate Binding Energies and Rank Structures
     # =========================================================================
+    # Note: Only validated complex structures are used for binding energy calculations
     
     try:
-        # Calculate binding energies
+        # Calculate binding energies (only for validated structures)
         binding_energies = complex.calculate_binding_energies()
         
-        # Rank structures by binding energy
+        # Rank structures by binding energy (only validated structures)
         rankings = complex.rank_structures("binding_energy")
+        
+        print(f"\nBinding energy calculations completed for {len(binding_energies)} structures")
         
     except Exception as e:
         print(f"ERROR: Binding energy calculation failed: {e}")
@@ -154,13 +169,16 @@ def analyze_co_edta_complex():
     # =========================================================================
     # STEP 6: Generate ORCA Input Files
     # =========================================================================
+    # ORCA inputs are generated only for validated structures
     
     try:
-        # Generate ORCA inputs for the best structures
+        # Generate ORCA inputs for the best validated structures
         orca_results = complex.prepare_orca_inputs(
-            n_best=5,  # Take top 5 structures
+            n_best=5,  # Take top 5 validated structures
             multiplicities=None  # Auto-determine multiplicities
         )
+        
+        print(f"\nORCA inputs generated for top {len(orca_results.get('complex_inputs', []))} structures")
         
     except Exception as e:
         print(f"ERROR: ORCA input generation failed: {e}")

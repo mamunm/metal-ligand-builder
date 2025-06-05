@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-03 11:51:20.850693",
+  "timestamp": "2025-06-04 20:57:56.401585",
   "xtb_config": {
     "method": "gfn2",
     "solvent": null,
@@ -15,17 +15,23 @@
     "metals": {
       "total": 1,
       "successful": 1,
-      "failed": 0
+      "failed": 0,
+      "valid": 1,
+      "invalid": 0
     },
     "ligands": {
       "total": 5,
       "successful": 5,
-      "failed": 0
+      "failed": 0,
+      "valid": 5,
+      "invalid": 0
     },
     "complexes": {
       "total": 50,
       "successful": 46,
-      "failed": 4
+      "failed": 4,
+      "valid": 4,
+      "invalid": 42
     }
   }
 }

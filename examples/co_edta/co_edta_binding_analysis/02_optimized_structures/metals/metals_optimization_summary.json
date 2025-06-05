@@ -1,20 +1,24 @@
 {
   "structure_type": "metals",
-  "timestamp": "2025-06-03T11:50:44.105823",
+  "timestamp": "2025-06-04T20:57:20.823438",
   "n_structures": 1,
   "n_successful": 1,
   "n_failed": 0,
+  "n_valid": 1,
+  "n_invalid": 0,
   "structures": [
     {
       "name": "Co2+_bare",
       "success": true,
+      "validation_passed": true,
+      "validation_message": "Structure is valid",
       "initial_energy": null,
       "final_energy": -2.153475494214,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 0.0,
         "total_energy": -2.153475494214,
+        "dipole_moment": 0.0,
         "homo_lumo_gap": 0.0
       },
       "error": null

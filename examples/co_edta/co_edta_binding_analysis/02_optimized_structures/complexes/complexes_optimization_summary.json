@@ -1,76 +1,88 @@
 {
   "structure_type": "complexes",
-  "timestamp": "2025-06-03T11:51:20.847607",
+  "timestamp": "2025-06-04T20:57:56.397641",
   "n_structures": 50,
   "n_successful": 46,
   "n_failed": 4,
+  "n_valid": 4,
+  "n_invalid": 42,
   "structures": [
     {
       "name": "edta_Co_conf4_pose40",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Expected 4 carboxylate groups, found 2",
       "initial_energy": null,
-      "final_energy": -77.804624137784,
+      "final_energy": -77.804616389694,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.052,
-        "total_energy": -77.804624137784,
-        "homo_lumo_gap": 1.1041000000000007
+        "total_energy": -77.804616389694,
+        "dipole_moment": -0.893,
+        "homo_lumo_gap": 1.1015999999999995
       },
       "error": null
     },
     {
       "name": "edta_Co_conf1_pose10",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Expected 4 carboxylate groups, found 0",
       "initial_energy": null,
-      "final_energy": -76.72417576262,
+      "final_energy": -76.72417573166,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.928,
-        "total_energy": -76.72417576262,
-        "homo_lumo_gap": 1.3248999999999995
+        "total_energy": -76.72417573166,
+        "dipole_moment": -0.468,
+        "homo_lumo_gap": 1.3247999999999998
       },
       "error": null
     },
     {
       "name": "edta_Co_conf1_pose15",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.83134681092,
+      "final_energy": -74.8313478317,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.686,
-        "total_energy": -74.83134681092,
-        "homo_lumo_gap": 1.8857999999999997
+        "total_energy": -74.8313478317,
+        "dipole_moment": -0.357,
+        "homo_lumo_gap": 1.8856999999999982
       },
       "error": null
     },
     {
       "name": "edta_Co_conf0_pose5",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.825555921769,
+      "final_energy": -74.825558028686,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.611,
-        "total_energy": -74.825555921769,
-        "homo_lumo_gap": 1.7828
+        "total_energy": -74.825558028686,
+        "dipole_moment": -0.189,
+        "homo_lumo_gap": 1.7844000000000015
       },
       "error": null
     },
     {
       "name": "edta_Co_conf4_pose45",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
       "final_energy": -74.824712484699,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.934,
         "total_energy": -74.824712484699,
+        "dipole_moment": 1.527,
         "homo_lumo_gap": 1.9713000000000012
       },
       "error": null
@@ -78,13 +90,15 @@
     {
       "name": "edta_Co_conf3_pose33",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
       "final_energy": -74.824709373897,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.942,
         "total_energy": -74.824709373897,
+        "dipole_moment": 1.526,
         "homo_lumo_gap": 1.971899999999998
       },
       "error": null
@@ -92,13 +106,15 @@
     {
       "name": "edta_Co_conf2_pose22",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -74.824707938527,
+      "final_energy": -74.824707938541,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.95,
-        "total_energy": -74.824707938527,
+        "total_energy": -74.824707938541,
+        "dipole_moment": 1.526,
         "homo_lumo_gap": 1.9728999999999992
       },
       "error": null
@@ -106,13 +122,15 @@
     {
       "name": "edta_Co_conf1_pose13",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -74.824707842578,
+      "final_energy": -74.824707842577,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.925,
-        "total_energy": -74.824707842578,
+        "total_energy": -74.824707842577,
+        "dipole_moment": 1.514,
         "homo_lumo_gap": 1.974499999999999
       },
       "error": null
@@ -120,13 +138,15 @@
     {
       "name": "edta_Co_conf0_pose3",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -74.824705371461,
+      "final_energy": -74.824705371366,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.951,
-        "total_energy": -74.824705371461,
+        "total_energy": -74.824705371366,
+        "dipole_moment": 1.514,
         "homo_lumo_gap": 1.972900000000001
       },
       "error": null
@@ -134,41 +154,47 @@
     {
       "name": "edta_Co_conf2_pose24",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.806563474144,
+      "final_energy": -74.806552529936,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.937,
-        "total_energy": -74.806563474144,
-        "homo_lumo_gap": 1.7478999999999996
+        "total_energy": -74.806552529936,
+        "dipole_moment": -0.452,
+        "homo_lumo_gap": 1.7521000000000022
       },
       "error": null
     },
     {
       "name": "edta_Co_conf4_pose47",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.806545270517,
+      "final_energy": -74.806545233422,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.941,
-        "total_energy": -74.806545270517,
-        "homo_lumo_gap": 1.7459000000000007
+        "total_energy": -74.806545233422,
+        "dipole_moment": -0.445,
+        "homo_lumo_gap": 1.746100000000002
       },
       "error": null
     },
     {
       "name": "edta_Co_conf3_pose35",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.805705586422,
+      "final_energy": -74.805705585699,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.811,
-        "total_energy": -74.805705586422,
+        "total_energy": -74.805705585699,
+        "dipole_moment": -0.332,
         "homo_lumo_gap": 1.7271999999999998
       },
       "error": null
@@ -176,41 +202,47 @@
     {
       "name": "edta_Co_conf3_pose34",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.804887364403,
+      "final_energy": -74.804890935969,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.284,
-        "total_energy": -74.804887364403,
-        "homo_lumo_gap": 2.1522000000000006
+        "total_energy": -74.804890935969,
+        "dipole_moment": 1.183,
+        "homo_lumo_gap": 2.149300000000002
       },
       "error": null
     },
     {
       "name": "edta_Co_conf4_pose46",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.804880352559,
+      "final_energy": -74.804883646041,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.267,
-        "total_energy": -74.804880352559,
-        "homo_lumo_gap": 2.1483999999999988
+        "total_energy": -74.804883646041,
+        "dipole_moment": 1.188,
+        "homo_lumo_gap": 2.150900000000002
       },
       "error": null
     },
     {
       "name": "edta_Co_conf1_pose12",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.800702670177,
+      "final_energy": -74.80070267013,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.271,
-        "total_energy": -74.800702670177,
+        "total_energy": -74.80070267013,
+        "dipole_moment": 0.471,
         "homo_lumo_gap": 1.9405999999999999
       },
       "error": null
@@ -218,27 +250,31 @@
     {
       "name": "edta_Co_conf2_pose23",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.795274561909,
+      "final_energy": -74.795275284904,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.952,
-        "total_energy": -74.795274561909,
-        "homo_lumo_gap": 1.9609000000000005
+        "total_energy": -74.795275284904,
+        "dipole_moment": 1.64,
+        "homo_lumo_gap": 1.966800000000001
       },
       "error": null
     },
     {
       "name": "edta_Co_conf0_pose4",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
       "final_energy": -74.79526893627,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.97,
         "total_energy": -74.79526893627,
+        "dipole_moment": 1.639,
         "homo_lumo_gap": 1.9675000000000011
       },
       "error": null
@@ -246,27 +282,31 @@
     {
       "name": "edta_Co_conf1_pose14",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.79521780392,
+      "final_energy": -74.795217800354,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.0,
-        "total_energy": -74.79521780392,
-        "homo_lumo_gap": 2.0045
+        "total_energy": -74.795217800354,
+        "dipole_moment": 1.645,
+        "homo_lumo_gap": 2.0046
       },
       "error": null
     },
     {
       "name": "edta_Co_conf0_pose1",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -74.794361729187,
+      "final_energy": -74.794361729344,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.944,
-        "total_energy": -74.794361729187,
+        "total_energy": -74.794361729344,
+        "dipole_moment": -0.732,
         "homo_lumo_gap": 1.4873999999999974
       },
       "error": null
@@ -274,27 +314,31 @@
     {
       "name": "edta_Co_conf2_pose20",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -74.794360448729,
+      "final_energy": -74.79435938692,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.957,
-        "total_energy": -74.794360448729,
-        "homo_lumo_gap": 1.4827000000000012
+        "total_energy": -74.79435938692,
+        "dipole_moment": -0.732,
+        "homo_lumo_gap": 1.4848
       },
       "error": null
     },
     {
       "name": "edta_Co_conf4_pose43",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -74.794347703328,
+      "final_energy": -74.794347703324,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.996,
-        "total_energy": -74.794347703328,
+        "total_energy": -74.794347703324,
+        "dipole_moment": -0.754,
         "homo_lumo_gap": 1.479000000000001
       },
       "error": null
@@ -302,13 +346,15 @@
     {
       "name": "edta_Co_conf1_pose11",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -74.794343561488,
+      "final_energy": -74.794343560806,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.01,
-        "total_energy": -74.794343561488,
+        "total_energy": -74.794343560806,
+        "dipole_moment": -0.755,
         "homo_lumo_gap": 1.4786000000000001
       },
       "error": null
@@ -316,13 +362,15 @@
     {
       "name": "edta_Co_conf3_pose31",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -74.794343521142,
+      "final_energy": -74.794343520529,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.011,
-        "total_energy": -74.794343521142,
+        "total_energy": -74.794343520529,
+        "dipole_moment": -0.755,
         "homo_lumo_gap": 1.4786000000000001
       },
       "error": null
@@ -330,13 +378,15 @@
     {
       "name": "edta_Co_conf4_pose44",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
       "final_energy": -74.757237669242,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.951,
         "total_energy": -74.757237669242,
+        "dipole_moment": 0.393,
         "homo_lumo_gap": 1.5425999999999984
       },
       "error": null
@@ -344,13 +394,15 @@
     {
       "name": "edta_Co_conf2_pose21",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.757210691636,
+      "final_energy": -74.757210733146,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.978,
-        "total_energy": -74.757210691636,
+        "total_energy": -74.757210733146,
+        "dipole_moment": 0.42,
         "homo_lumo_gap": 1.5409000000000006
       },
       "error": null
@@ -358,13 +410,15 @@
     {
       "name": "edta_Co_conf3_pose32",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.757185122499,
+      "final_energy": -74.757185125255,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.985,
-        "total_energy": -74.757185122499,
+        "total_energy": -74.757185125255,
+        "dipole_moment": 0.418,
         "homo_lumo_gap": 1.5389
       },
       "error": null
@@ -372,13 +426,15 @@
     {
       "name": "edta_Co_conf0_pose2",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -74.757142249782,
+      "final_energy": -74.757142249839,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.022,
-        "total_energy": -74.757142249782,
+        "total_energy": -74.757142249839,
+        "dipole_moment": 0.442,
         "homo_lumo_gap": 1.532
       },
       "error": null
@@ -386,139 +442,159 @@
     {
       "name": "edta_Co_conf2_pose27",
       "success": true,
+      "validation_passed": true,
+      "validation_message": "Complex structure validated successfully",
       "initial_energy": null,
-      "final_energy": -70.8402206304,
+      "final_energy": -70.840217128039,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.485,
-        "total_energy": -70.8402206304,
-        "homo_lumo_gap": 1.1986000000000008
-      },
-      "error": null
-    },
-    {
-      "name": "edta_Co_conf2_pose26",
-      "success": true,
-      "initial_energy": null,
-      "final_energy": -70.840215276998,
-      "energy_change": null,
-      "convergence": {},
-      "properties": {
-        "dipole_moment": 1.714,
-        "total_energy": -70.840215276998,
-        "homo_lumo_gap": 1.1931999999999992
-      },
-      "error": null
-    },
-    {
-      "name": "edta_Co_conf2_pose29",
-      "success": true,
-      "initial_energy": null,
-      "final_energy": -70.840214568928,
-      "energy_change": null,
-      "convergence": {},
-      "properties": {
-        "dipole_moment": 1.612,
-        "total_energy": -70.840214568928,
-        "homo_lumo_gap": 1.1953999999999994
+        "total_energy": -70.840217128039,
+        "dipole_moment": 0.414,
+        "homo_lumo_gap": 1.1952999999999996
       },
       "error": null
     },
     {
       "name": "edta_Co_conf2_pose25",
       "success": true,
+      "validation_passed": true,
+      "validation_message": "Complex structure validated successfully",
       "initial_energy": null,
-      "final_energy": -70.840213941597,
+      "final_energy": -70.840217110476,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 1.529,
-        "total_energy": -70.840213941597,
-        "homo_lumo_gap": 1.1958000000000002
+        "total_energy": -70.840217110476,
+        "dipole_moment": 0.375,
+        "homo_lumo_gap": 1.1959
+      },
+      "error": null
+    },
+    {
+      "name": "edta_Co_conf2_pose29",
+      "success": true,
+      "validation_passed": true,
+      "validation_message": "Complex structure validated successfully",
+      "initial_energy": null,
+      "final_energy": -70.840216611208,
+      "energy_change": null,
+      "convergence": {},
+      "properties": {
+        "total_energy": -70.840216611208,
+        "dipole_moment": 0.442,
+        "homo_lumo_gap": 1.1931000000000012
+      },
+      "error": null
+    },
+    {
+      "name": "edta_Co_conf2_pose26",
+      "success": true,
+      "validation_passed": true,
+      "validation_message": "Complex structure validated successfully",
+      "initial_energy": null,
+      "final_energy": -70.840216049067,
+      "energy_change": null,
+      "convergence": {},
+      "properties": {
+        "total_energy": -70.840216049067,
+        "dipole_moment": 0.417,
+        "homo_lumo_gap": 1.1940000000000008
       },
       "error": null
     },
     {
       "name": "edta_Co_conf1_pose18",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -70.768948191014,
+      "final_energy": -70.768953742915,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 4.469,
-        "total_energy": -70.768948191014,
-        "homo_lumo_gap": 2.240999999999998
+        "total_energy": -70.768953742915,
+        "dipole_moment": -1.267,
+        "homo_lumo_gap": 2.2386
       },
       "error": null
     },
     {
       "name": "edta_Co_conf3_pose37",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -70.765295352361,
+      "final_energy": -70.765291446073,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.134,
-        "total_energy": -70.765295352361,
-        "homo_lumo_gap": 1.4842999999999993
+        "total_energy": -70.765291446073,
+        "dipole_moment": 0.856,
+        "homo_lumo_gap": 1.4823000000000004
       },
       "error": null
     },
     {
       "name": "edta_Co_conf2_pose28",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 3 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -70.758093043952,
+      "final_energy": -70.758093774759,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.201,
-        "total_energy": -70.758093043952,
-        "homo_lumo_gap": 0.9308000000000014
+        "total_energy": -70.758093774759,
+        "dipole_moment": -0.26,
+        "homo_lumo_gap": 0.9310999999999989
       },
       "error": null
     },
     {
       "name": "edta_Co_conf4_pose49",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 4 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -70.750388066485,
+      "final_energy": -70.75038402548,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.851,
-        "total_energy": -70.750388066485,
-        "homo_lumo_gap": 2.089600000000001
+        "total_energy": -70.75038402548,
+        "dipole_moment": -1.044,
+        "homo_lumo_gap": 2.0889000000000006
       },
       "error": null
     },
     {
       "name": "edta_Co_conf0_pose7",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 3 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -70.742483867523,
+      "final_energy": -70.74248307928,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 6.515,
-        "total_energy": -70.742483867523,
-        "homo_lumo_gap": 1.206500000000002
+        "total_energy": -70.74248307928,
+        "dipole_moment": 0.885,
+        "homo_lumo_gap": 1.2066999999999997
       },
       "error": null
     },
     {
       "name": "edta_Co_conf3_pose38",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -70.735192570105,
+      "final_energy": -70.735192594714,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 6.444,
-        "total_energy": -70.735192570105,
+        "total_energy": -70.735192594714,
+        "dipole_moment": 0.545,
         "homo_lumo_gap": 1.956199999999999
       },
       "error": null
@@ -526,132 +602,152 @@
     {
       "name": "edta_Co_conf1_pose16",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Ligand fragmented into 2 pieces",
       "initial_energy": null,
-      "final_energy": -70.682030728185,
+      "final_energy": -70.682028994025,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 5.062,
-        "total_energy": -70.682030728185,
-        "homo_lumo_gap": 1.3843000000000014
+        "total_energy": -70.682028994025,
+        "dipole_moment": -0.158,
+        "homo_lumo_gap": 1.3820999999999994
       },
       "error": null
     },
     {
       "name": "edta_Co_conf3_pose36",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Too few C-N bonds (5), structure may be fragmented",
       "initial_energy": null,
-      "final_energy": -70.677938671932,
+      "final_energy": -70.677937036622,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 3.12,
-        "total_energy": -70.677938671932,
-        "homo_lumo_gap": 0.4314
+        "total_energy": -70.677937036622,
+        "dipole_moment": 0.119,
+        "homo_lumo_gap": 0.43230000000000146
       },
       "error": null
     },
     {
       "name": "edta_Co_conf1_pose17",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Metal binding validation failed: Only 2 coordinating atoms found, expected ~6",
       "initial_energy": null,
-      "final_energy": -70.657370286074,
+      "final_energy": -70.657368120171,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 7.345,
-        "total_energy": -70.657370286074,
-        "homo_lumo_gap": 0.6743000000000023
+        "total_energy": -70.657368120171,
+        "dipole_moment": 0.284,
+        "homo_lumo_gap": 0.6745999999999981
       },
       "error": null
     },
     {
       "name": "edta_Co_conf3_pose39",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Too few C-N bonds (5), structure may be fragmented",
       "initial_energy": null,
-      "final_energy": -70.642056680272,
+      "final_energy": -70.642056923014,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.588,
-        "total_energy": -70.642056680272,
-        "homo_lumo_gap": 0.6853000000000016
+        "total_energy": -70.642056923014,
+        "dipole_moment": 0.372,
+        "homo_lumo_gap": 0.6888000000000005
       },
       "error": null
     },
     {
       "name": "edta_Co_conf4_pose48",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Too few C-N bonds (4), structure may be fragmented",
       "initial_energy": null,
-      "final_energy": -70.610947151388,
+      "final_energy": -70.610951596349,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.999,
-        "total_energy": -70.610947151388,
-        "homo_lumo_gap": 0.9572000000000003
+        "total_energy": -70.610951596349,
+        "dipole_moment": 0.867,
+        "homo_lumo_gap": 0.956199999999999
       },
       "error": null
     },
     {
       "name": "edta_Co_conf0_pose9",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Too few C-N bonds (5), structure may be fragmented",
       "initial_energy": null,
-      "final_energy": -70.607006971506,
+      "final_energy": -70.607008960157,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 7.009,
-        "total_energy": -70.607006971506,
-        "homo_lumo_gap": 0.5566999999999993
+        "total_energy": -70.607008960157,
+        "dipole_moment": 0.603,
+        "homo_lumo_gap": 0.557500000000001
       },
       "error": null
     },
     {
       "name": "edta_Co_conf0_pose6",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Too few C-N bonds (5), structure may be fragmented",
       "initial_energy": null,
-      "final_energy": -70.607002392178,
+      "final_energy": -70.607002059617,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 6.96,
-        "total_energy": -70.607002392178,
-        "homo_lumo_gap": 0.5547000000000004
+        "total_energy": -70.607002059617,
+        "dipole_moment": 0.567,
+        "homo_lumo_gap": 0.5548000000000002
       },
       "error": null
     },
     {
       "name": "edta_Co_conf1_pose19",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Too few C-N bonds (5), structure may be fragmented",
       "initial_energy": null,
-      "final_energy": -70.603369452999,
+      "final_energy": -70.6033630318,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 12.8,
-        "total_energy": -70.603369452999,
-        "homo_lumo_gap": 0.7708000000000013
+        "total_energy": -70.6033630318,
+        "dipole_moment": 0.752,
+        "homo_lumo_gap": 0.7724999999999991
       },
       "error": null
     },
     {
       "name": "edta_Co_conf0_pose8",
       "success": true,
+      "validation_passed": false,
+      "validation_message": "Ligand validation failed: Too few C-N bonds (5), structure may be fragmented",
       "initial_energy": null,
-      "final_energy": -70.572981981394,
+      "final_energy": -70.573267966867,
       "energy_change": null,
       "convergence": {},
       "properties": {
-        "dipole_moment": 2.334,
-        "total_energy": -70.572981981394,
-        "homo_lumo_gap": 1.2253000000000007
+        "total_energy": -70.573267966867,
+        "dipole_moment": 0.934,
+        "homo_lumo_gap": 1.2224000000000004
       },
       "error": null
     },
     {
       "name": "edta_Co_conf3_pose30",
       "success": false,
+      "validation_passed": true,
+      "validation_message": "",
       "initial_energy": null,
       "final_energy": null,
       "energy_change": null,
@@ -662,6 +758,8 @@
     {
       "name": "edta_Co_conf4_pose42",
       "success": false,
+      "validation_passed": true,
+      "validation_message": "",
       "initial_energy": null,
       "final_energy": null,
       "energy_change": null,
@@ -672,6 +770,8 @@
     {
       "name": "edta_Co_conf4_pose41",
       "success": false,
+      "validation_passed": true,
+      "validation_message": "",
       "initial_energy": null,
       "final_energy": null,
       "energy_change": null,
@@ -682,6 +782,8 @@
     {
       "name": "edta_Co_conf0_pose0",
       "success": false,
+      "validation_passed": true,
+      "validation_message": "",
       "initial_energy": null,
       "final_energy": null,
       "energy_change": null,

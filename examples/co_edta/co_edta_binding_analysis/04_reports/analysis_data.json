@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2025-06-03T11:51:20.907346",
+    "timestamp": "2025-06-04T20:57:56.444922",
     "system": {
       "metal": {
         "symbol": "Co",
@@ -59,9 +59,9 @@
     },
     "best_results": {
       "lowest_energy_complex": {
-        "structure": "edta_Co_conf4_pose40_opt",
-        "energy": "-77.804624 Hartree",
-        "homo_lumo_gap": "1.104 eV"
+        "structure": "edta_Co_conf2_pose27_opt",
+        "energy": "-70.840217 Hartree",
+        "homo_lumo_gap": "1.195 eV"
       }
     }
   },
@@ -94,29 +94,29 @@
     "ligands": {
       "optimization_rate": 1.0,
       "energy_statistics": {
-        "min": -67.990442101841,
-        "max": -67.982552648475,
-        "mean": -67.9863485476124,
-        "std": 0.0028446196287921586
+        "min": -67.990437481234,
+        "max": -67.982551512426,
+        "mean": -67.9863475482602,
+        "std": 0.0028437187594789995
       },
       "homo_lumo_gap": {
-        "min": 2.4782,
-        "max": 2.999999999999999,
-        "mean": 2.83472
+        "min": 2.4823000000000004,
+        "max": 2.9995000000000003,
+        "mean": 2.8354000000000004
       }
     },
     "complexes": {
-      "optimization_rate": 0.92,
+      "optimization_rate": 0.08,
       "energy_statistics": {
-        "min": -77.804624137784,
-        "max": -70.572981981394,
-        "mean": -73.21884335188915,
-        "std": 2.163427154203341
+        "min": -70.840217128039,
+        "max": -70.840216049067,
+        "mean": -70.84021672469751,
+        "std": 4.418330748445582e-07
       },
       "homo_lumo_gap": {
-        "min": 0.4314,
-        "max": 2.240999999999998,
-        "mean": 1.4967021739130433
+        "min": 1.1931000000000012,
+        "max": 1.1959,
+        "mean": 1.1945750000000004
       }
     }
   },
@@ -129,8 +129,7 @@
     },
     "multiplicities": [
       2,
-      4,
-      6
+      4
     ],
     "n_requested": 5
   },
@@ -140,26 +139,20 @@
       "complexes": {
         "values": [
           0.0,
-          677.9915916514904,
-          1865.7596916241732,
-          1869.3935294296755,
-          1869.9227941818694,
-          1869.9247462396042,
-          1869.925646947875,
-          1869.925707156785,
-          1869.9272578061139,
-          1881.3114702500075
+          1.1020946628007499e-05,
+          0.0003243163452255746,
+          0.0006770651554335657
         ],
-        "within_5_kcal": 1,
-        "within_10_kcal": 1
+        "within_5_kcal": 4,
+        "within_10_kcal": 4
       },
       "ligands": {
         "values": [
           0.0,
-          1.0957602702616358,
-          3.1616654164547384,
-          3.6355878861267565,
-          4.950706732347009
+          1.092384205911997,
+          3.158765919822009,
+          3.632688181788876,
+          4.9485201391843985
         ],
         "within_5_kcal": 5,
         "within_10_kcal": 5
@@ -175,18 +168,18 @@
   },
   "best_structures": {
     "complex": {
-      "title": "edta_Co_conf4_pose40_opt",
-      "energy": -77.804624137784,
+      "title": "edta_Co_conf2_pose27_opt",
+      "energy": -70.840217128039,
       "properties": {
-        "dipole_moment": 3.052,
-        "total_energy": -77.804624137784,
-        "homo_lumo_gap": 1.1041000000000007
+        "total_energy": -70.840217128039,
+        "dipole_moment": 0.414,
+        "homo_lumo_gap": 1.1952999999999996
       },
-      "file": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/02_optimized_structures/complexes/edta_Co_pose_040/xtbopt.xyz"
+      "file": "/Users/osman_mbp/Osman_Macbook_Pro/Metal_Ligand/xtb_prescreening/examples/co_edta/co_edta_binding_analysis/02_optimized_structures/complexes/edta_Co_pose_027/xtbopt.xyz"
     },
     "ligand": {
       "title": "edta_conformer_3_opt",
-      "energy": -67.990442101841
+      "energy": -67.990437481234
     }
   }
 }
